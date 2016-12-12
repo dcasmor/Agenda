@@ -15,7 +15,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        AgendaFragment agendaFragment = (AgendaFragment) findViewById(R.id.agenda_container);
+        AgendaFragment agendaFragment = (AgendaFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.content_main);
+
+        if (agendaFragment == null) {
+            agendaFragment = AgendaFragment.newInstance();
+            getSupportFragmentManager().beginTransaction().add(R.id.content_main, agendaFragment)
+                    .commit();
+        }
     }
 
     @Override
