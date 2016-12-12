@@ -36,6 +36,22 @@ public class AgendaFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_agenda, container, false);
         listaAgenda = (ListView) root.findViewById(R.id.agenda_list);
 
+        String[] contactos = {
+                "Alexander Pierrot",
+                "Carlos Lopez",
+                "Sara Bonz",
+                "Liliana Clarence",
+                "Benito Peralta",
+                "Juan Jaramillo",
+                "Christian Steps",
+                "Alexa Giraldo",
+                "Linda Murillo",
+                "Lizeth Astrada"
+        };
+
+
+        listaAgenda = new ArrayAdapter<>(getActivity(), this, contactos);
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_agenda, container, false);
     }
