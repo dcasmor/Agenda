@@ -37,8 +37,8 @@ public class AgendaFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param //param1 Parameter 1.
+     * @param //param2 Parameter 2.
      * @return A new instance of fragment AgendaFragment.
      */
     // TODO: Rename and change types and number of parameters
@@ -80,8 +80,8 @@ public class AgendaFragment extends Fragment {
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+            //throw new RuntimeException(context.toString()
+              //      + " must implement OnFragmentInteractionListener");
         }
     }
 
