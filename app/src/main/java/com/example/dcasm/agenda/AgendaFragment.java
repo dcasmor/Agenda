@@ -24,7 +24,7 @@ public class AgendaFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static AgendaFragment newInstance(/*String param1, String param2*/) {
+    public static AgendaFragment newInstance() {
         AgendaFragment fragment = new AgendaFragment();
         return fragment;
     }
