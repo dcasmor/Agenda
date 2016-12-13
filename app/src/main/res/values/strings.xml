@@ -4,4 +4,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="imagen">Imagen del contacto</string>
+    <string name="contacto">Nombre del contacto</string>
+    <string name="telefono">Teléfono del contacto</string>
 </resources>

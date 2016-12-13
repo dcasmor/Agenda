@@ -1,39 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:minHeight="?attr/listPreferredItemHeight"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/iv_avatar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerVertical="true" />
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/ivContacto"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:contentDescription="@string/imagen"
+        android:layout_width="75dp"
+        android:layout_height="75dp" />
 
     <TextView
-        android:id="@+id/tv_name"
+        android:text="@string/contacto"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="56dp"
-        android:text="Nombre"
-        android:textAppearance="?attr/textAppearanceListItem"
-        tools:text="Alexander Pierrot" />
+        android:layout_alignTop="@+id/ivContacto"
+        android:id="@+id/tvNombre"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/ivContacto"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_height="35dp"
+        android:textSize="24sp"
+        android:paddingStart="5dp"
+        android:textColor="@android:color/black"
+        tools:ignore="RtlSymmetry"
+        android:textAppearance="?attr/textAppearanceListItem"/>
 
     <TextView
-        android:id="@+id/tv_title"
+        android:text="@string/telefono"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tv_name"
-        android:layout_below="@+id/tv_name"
-        android:text="Cargo"
-        tools:text="CEO" />
-
-    <TextView
-        android:id="@+id/tv_company"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tv_name"
-        android:layout_below="@+id/tv_title"
-        android:text="Compañía"
-        tools:text="Blue Insurances Ltd" />
-
+        android:layout_below="@+id/tvNombre"
+        android:layout_alignStart="@+id/tvNombre"
+        android:id="@+id/tvTelefono"
+        android:layout_marginTop="10dp"
+        android:layout_alignEnd="@+id/tvNombre"
+        android:layout_height="30dp"
+        android:textSize="18sp"
+        android:paddingStart="5dp"
+        tools:ignore="RtlSymmetry" />
 
 </RelativeLayout>
