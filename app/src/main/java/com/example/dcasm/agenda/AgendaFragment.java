@@ -7,8 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class AgendaFragment extends Fragment {
 
@@ -37,21 +39,19 @@ public class AgendaFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_agenda, container, false);
         listaAgenda = (ListView) root.findViewById(R.id.agenda_list);
 
-        String[] contactos = {
-                "Alexander Pierrot",
-                "Carlos Lopez",
-                "Sara Bonz",
-                "Liliana Clarence",
-                "Benito Peralta",
-                "Juan Jaramillo",
-                "Christian Steps",
-                "Alexa Giraldo",
-                "Linda Murillo",
-                "Lizeth Astrada"
-        };
+        agendaAdapter = new AgendaAdapter(getActivity(), Database.getInstance().getContactos());
 
+        listaAgenda.setAdapter(agendaAdapter);
 
-        listaAgenda = new ArrayAdapter<Contacto>(getActivity(), contactos)
+        listaAgenda.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Contacto contacto = agendaAdapter.getItem(i);
+                Toast.makeText(getActivity(), "Abrir detalle del contacto", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        setHasOptionsMenu(true);
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_agenda, container, false);
