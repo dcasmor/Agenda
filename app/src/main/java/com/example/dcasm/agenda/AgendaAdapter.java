@@ -28,13 +28,6 @@ public class AgendaAdapter extends ArrayAdapter<Contacto> {
 
         if (null == convertView) {
             convertView = inflater.inflate(R.layout.list_item_agenda, parent, false);
-
-            holder = new RecyclerView.ViewHolder() {
-                @Override
-                public String toString() {
-                    return super.toString();
-                }
-            }
         }
     }
 }

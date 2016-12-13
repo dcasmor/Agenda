@@ -7,27 +7,25 @@ import java.util.UUID;
  */
 
 public class Contacto {
-    private int idContacto;
+    private String idContacto;
     private String nombre;
+    private String telefono;
     private String direccion;
     private String webBlog;
-    private long telefono;
 
-    public Contacto(String nom, String dir, String web, long tel) {
-        idContacto = Integer.parseInt(UUID.randomUUID().toString());
+    public Contacto(String nom, String tel, String dir, String web) {
+        idContacto = UUID.randomUUID().toString();
         nombre = nom;
         direccion = dir;
         webBlog = web;
         telefono = tel;
     }
 
-    public int getIdContacto() {
+    public String getIdContacto() {
         return idContacto;
     }
 
-    public void setIdContacto(int idContacto) {
-        this.idContacto = idContacto;
-    }
+    public void setIdContacto(String idContacto) { this.idContacto = idContacto; }
 
     public String getNombre() {
         return nombre;
@@ -53,11 +51,11 @@ public class Contacto {
         this.webBlog = webBlog;
     }
 
-    public long getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(long telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
