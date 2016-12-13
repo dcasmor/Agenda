@@ -13,6 +13,7 @@ import android.widget.ListView;
 public class AgendaFragment extends Fragment {
 
     private ListView listaAgenda;
+    private AgendaAdapter agendaAdapter;
 
     public AgendaFragment() {
         // Required empty public constructor
@@ -50,7 +51,7 @@ public class AgendaFragment extends Fragment {
         };
 
 
-        listaAgenda = new ArrayAdapter<>(getActivity(), this, contactos);
+        listaAgenda = new ArrayAdapter<Contacto>(getActivity(), contactos)
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_agenda, container, false);

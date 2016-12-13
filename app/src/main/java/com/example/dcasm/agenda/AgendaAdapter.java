@@ -1,6 +1,7 @@
 package com.example.dcasm.agenda;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +24,17 @@ public class AgendaAdapter extends ArrayAdapter<Contacto> {
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+        RecyclerView.ViewHolder holder;
+
         if (null == convertView) {
             convertView = inflater.inflate(R.layout.list_item_agenda, parent, false);
+
+            holder = new RecyclerView.ViewHolder() {
+                @Override
+                public String toString() {
+                    return super.toString();
+                }
+            }
         }
     }
 }
