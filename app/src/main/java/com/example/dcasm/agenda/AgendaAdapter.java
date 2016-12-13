@@ -1,7 +1,6 @@
 package com.example.dcasm.agenda;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +45,7 @@ public class AgendaAdapter extends ArrayAdapter<Contacto> {
 
         holder.nom.setText(contacto.getNombre());
         holder.tel.setText(contacto.getTelefono());
-        //Glide.with(getContext()).load().into(holder.img);
+        Glide.with(getContext()).load(R.drawable.image_contact_default).into(holder.img);
 
         return convertView;
     }
