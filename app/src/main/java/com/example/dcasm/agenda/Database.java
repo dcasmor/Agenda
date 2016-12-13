@@ -16,10 +16,27 @@ public class Database extends SQLiteOpenHelper{
 
     private static Contacto cont;
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "contactos.db";
+    private static final String DATABASE_NAME = "contactos.s3db";
     private static final String TABLA_CONTACTOS = "contactos";
     private static final String TABLA_TELEFONOS = "telefonos";
     private static final String TABLA_FOTOS = "fotos";
+    private static final String ins = "PRAGMA foreign_keys = ON;" +
+            "create table [contactos] (" +
+            "[idcontacto] integer not null primary key autoincrement," +
+            "[nombre] varchar(50) null," +
+            "[direccion] varchar(50) null," +
+            "[webblog] varchar(100) null);" +
+            "create table [telefonos] (" +
+            "[idtelefonos] integer not null primary key," +
+            "[telefono] varchar(45) null," +
+            "[idcontacto] integer null," +
+            "foreign_key (idcontacto) references contactos(idcontacto));" +
+            "create table [fotos] (" +
+            "[idfoto] integer not null primary key," +
+            "[nomfichero] varchar(50) null," +
+            "[observfoto] varchar(255) null," +
+            "[idcontacto] integer null," +
+            "foreign key (idcontacto) references contactos(idcontacto));";
 
     //private static Database database = new Database();
     private HashMap<String, Contacto> contacto = new HashMap<>();
