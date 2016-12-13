@@ -24,7 +24,7 @@ public class AgendaAdapter extends ArrayAdapter<Contacto> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if (null == convertView) {
-            convertView = inflater.inflate()
+            convertView = inflater.inflate(R.layout.list_item_agenda, parent, false);
         }
     }
 }
