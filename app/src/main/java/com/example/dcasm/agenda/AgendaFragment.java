@@ -57,10 +57,10 @@ public class AgendaFragment extends Fragment {
         setHasOptionsMenu(true);
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_agenda, container, false);
+        return root;
     }
 
-    @Override
+    /*@Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_main, menu);
@@ -74,7 +74,7 @@ public class AgendaFragment extends Fragment {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     /**
      * This interface must be implemented by activities that contain this
