@@ -42,7 +42,10 @@ public class AgendaFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_agenda, container, false);
         listaAgenda = (ListView) root.findViewById(R.id.agenda_list);
 
-        agendaAdapter = new AgendaAdapter(getActivity(), Database.getInstance().getContactos());
+        Database aux = new Database();
+
+        agendaAdapter = new AgendaAdapter(getActivity(), aux.getContactos()
+                /*Database.getInstance().getContactos()*/);
 
         listaAgenda.setAdapter(agendaAdapter);
 

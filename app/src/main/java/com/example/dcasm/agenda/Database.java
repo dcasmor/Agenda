@@ -41,6 +41,11 @@ public class Database extends SQLiteOpenHelper{
     //private static Database database = new Database();
     private HashMap<String, Contacto> contacto = new HashMap<>();
 
+    public Database(Context context, String DATABASE_NAME, SQLiteDatabase.CursorFactory factory,
+                    int DATABASE_VERSION) {
+        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+    }
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(ins);
@@ -48,10 +53,6 @@ public class Database extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-    }
-
-    public Database(Context context, String DATABASE_NAME, SQLiteDatabase.CursorFactory factory, int DATABASE_VERSION) {
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
 
     /**public static Database getInstance() { return database; }
