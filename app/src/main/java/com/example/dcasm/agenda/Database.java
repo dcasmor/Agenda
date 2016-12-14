@@ -41,9 +41,8 @@ public class Database extends SQLiteOpenHelper{
     //private static Database database = new Database();
     private HashMap<String, Contacto> contacto = new HashMap<>();
 
-    public Database(Context context, String DATABASE_NAME, SQLiteDatabase.CursorFactory factory,
-                    int DATABASE_VERSION) {
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+    public Database(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override

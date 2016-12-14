@@ -13,8 +13,8 @@ public class Contacto {
     private String direccion;
     private String webBlog;
 
-    public Contacto(String nom, String tel, String dir, String web) {
-        idContacto = UUID.randomUUID().toString();
+    public Contacto(String id, String nom, String tel, String dir, String web) {
+        idContacto = id;
         nombre = nom;
         direccion = dir;
         webBlog = web;
