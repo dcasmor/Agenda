@@ -3,6 +3,7 @@ package com.example.dcasm.agenda;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -23,6 +24,25 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().add(R.id.content_main, agendaFragment)
                     .commit();
         }
+
+        String ins = "PRAGMA foreign_keys = ON;" +
+                "\ncreate table [contactos] (" +
+                "\n[idcontacto] integer not null primary key autoincrement," +
+                "\n[nombre] varchar(50) null," +
+                "\n[direccion] varchar(50) null," +
+                "\n[webblog] varchar(100) null);" +
+                "\ncreate table [telefonos] (" +
+                "\n[idtelefonos] integer not null primary key," +
+                "\n[telefono] varchar(45) null," +
+                "\n[idcontacto] integer null," +
+                "\nforeign_key (idcontacto) references contactos(idcontacto));" +
+                "\ncreate table [fotos] (" +
+                "\n[idfoto] integer not null primary key," +
+                "\n[nomfichero] varchar(50) null," +
+                "\n[observfoto] varchar(255) null," +
+                "\n[idcontacto] integer null," +
+                "\nforeign key (idcontacto) references contactos(idcontacto));";
+        Log.d("OYE", ins);
     }
 
     @Override

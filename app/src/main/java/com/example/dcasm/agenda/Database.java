@@ -3,6 +3,7 @@ package com.example.dcasm.agenda;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,28 +22,29 @@ public class Database extends SQLiteOpenHelper{
     private static final String TABLA_TELEFONOS = "telefonos";
     private static final String TABLA_FOTOS = "fotos";
     private static final String ins = "PRAGMA foreign_keys = ON;" +
-            "create table [contactos] (" +
-            "[idcontacto] integer not null primary key autoincrement," +
-            "[nombre] varchar(50) null," +
-            "[direccion] varchar(50) null," +
-            "[webblog] varchar(100) null);" +
-            "create table [telefonos] (" +
-            "[idtelefonos] integer not null primary key," +
-            "[telefono] varchar(45) null," +
-            "[idcontacto] integer null," +
-            "foreign_key (idcontacto) references contactos(idcontacto));" +
-            "create table [fotos] (" +
-            "[idfoto] integer not null primary key," +
-            "[nomfichero] varchar(50) null," +
-            "[observfoto] varchar(255) null," +
-            "[idcontacto] integer null," +
-            "foreign key (idcontacto) references contactos(idcontacto));";
+            "\ncreate table [contactos] (" +
+            "\n[idcontacto] integer not null primary key autoincrement," +
+            "\n[nombre] varchar(50) null," +
+            "\n[direccion] varchar(50) null," +
+            "\n[webblog] varchar(100) null);" +
+            "\ncreate table [telefonos] (" +
+            "\n[idtelefonos] integer not null primary key," +
+            "\n[telefono] varchar(45) null," +
+            "\n[idcontacto] integer null," +
+            "\nforeign_key (idcontacto) references contactos(idcontacto));" +
+            "\ncreate table [fotos] (" +
+            "\n[idfoto] integer not null primary key," +
+            "\n[nomfichero] varchar(50) null," +
+            "\n[observfoto] varchar(255) null," +
+            "\n[idcontacto] integer null," +
+            "\nforeign key (idcontacto) references contactos(idcontacto));";
 
     //private static Database database = new Database();
     private HashMap<String, Contacto> contacto = new HashMap<>();
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        Log.d("OYE", ins);
     }
 
     @Override
