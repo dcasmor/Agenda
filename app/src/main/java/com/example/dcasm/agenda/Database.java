@@ -40,6 +40,10 @@ public class Database extends SQLiteOpenHelper {
             "CONTACTO INTEGER NOT NULL," +
             "FOREIGN KEY(CONTACTO) REFERENCES CONTACTOS(IDCONTACTO));";
 
+    public static Database newInstance(Context context) {
+        Database db = new Database(context);
+        return db;
+    }
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
