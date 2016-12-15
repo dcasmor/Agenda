@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Agenda</string>
+    <string name="action_settings">Preferencias</string>
+    <string name="contacto">Nombre del contacto</string>
+    <string name="hello_blank_fragment"></string>
+    <string name="imagen">Imagen del contacto</string>
+    <string name="navigation_drawer_close"></string>
+    <string name="nombreContacto">Nombre</string>
+    <string name="telefono">Teléfono del contacto</string>
+    <string name="title_activity_anadir_contacto">AñadirContacto</string>
+</resources>
