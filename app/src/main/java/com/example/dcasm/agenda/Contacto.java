@@ -10,8 +10,8 @@ import java.util.UUID;
 public class Contacto implements Serializable {
     private static final long SERIALVERSIONUID = 1L;
 
-    private long idContacto;
-    private String nombre;
+    long idContacto;
+    String nombre;
     String telefono, direccion, webBlog;
 
     public Contacto(long id, String nom, String tel, String dir, String web) {
