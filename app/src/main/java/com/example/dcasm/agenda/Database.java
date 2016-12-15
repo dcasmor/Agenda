@@ -16,34 +16,29 @@ import java.util.List;
 public class Database extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "BD_Contactos.db";
+    private static final String DATABASE_NAME = "contactos.sdb";
     private static final String TABLA_CONTACTOS = "contactos";
     private static final String TABLA_TELEFONOS = "telefonos";
     private static final String TABLA_FOTOS = "fotos";
 
-    private static final String sql1 = "PRAGMA FOREIGN_KEYS ON;";
-    private static final String sql2 = "CREATE TABLE CONTACTOS(" +
-            "IDCONTACTO INTEGER PRIMARY KEY NOT NULL," +
-            "NOMBRE VARCHAR(50) NOT NULL," +
-            "DIRECCION VARCHAR(50) NOT NULL," +
-            "WEBBLOG VARCHAR(100));";
-    private static final String sql3 = "CREATE TABLE TELEFONOS(" +
-            "IDTELEFONOS INTEGER PRIMARY KEY NOT NULL," +
-            "TELEFONO VARCHAR(45) NOT NULL," +
-            "CONTACTO INTEGER NOT NULL," +
-            "FOREIGN KEY(CONTACTO) REFERENCES CONTACTO(IDCONTACTO));";
+    private static final String sql1 = "\nPRAGMA FOREIGN_KEYS = ON;";
+    private static final String sql2 = "\nCREATE TABLE CONTACTOS(" +
+            "\nIDCONTACTO INTEGER PRIMARY KEY NOT NULL," +
+            "\nNOMBRE VARCHAR(50) NOT NULL," +
+            "\nDIRECCION VARCHAR(50) NOT NULL," +
+            "\nWEBBLOG VARCHAR(100));";
+    private static final String sql3 = "\nCREATE TABLE TELEFONOS(" +
+            "\nIDTELEFONOS INTEGER PRIMARY KEY NOT NULL," +
+            "\nTELEFONO VARCHAR(45) NOT NULL," +
+            "\nCONTACTO INTEGER NOT NULL," +
+            "\nFOREIGN KEY(CONTACTO) REFERENCES CONTACTOS(IDCONTACTO));";
 
-    private static final String sql4 = "CREATE TABLE FOTOS(" +
-            "IDFOTO INTEGER NOT NULL," +
-            "NOMFICHERO VARCHAR(50) NOT NULL," +
-            "OBSERVFFOTO VARCHAR(255)," +
-            "CONTACTO INTEGER NOT NULL," +
-            "FOREIGN KEY(CONTACTO) REFERENCES CONTACTOS(IDCONTACTO));";
-
-    public static Database newInstance(Context context) {
-        Database db = new Database(context);
-        return db;
-    }
+    private static final String sql4 = "\nCREATE TABLE FOTOS(" +
+            "\nIDFOTO INTEGER NOT NULL," +
+            "\nNOMFICHERO VARCHAR(50) NOT NULL," +
+            "\nOBSERVFFOTO VARCHAR(255)," +
+            "\nCONTACTO INTEGER NOT NULL," +
+            "\nFOREIGN KEY(CONTACTO) REFERENCES CONTACTOS(IDCONTACTO));";
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -51,23 +46,18 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.d("BREAKPOINT 3", "ON CREATE DE DATABASE");
-        db.execSQL(sql2);
         db.execSQL(sql1);
+        db.execSQL(sql2);
         db.execSQL(sql3);
         db.execSQL(sql4);
-        Log.d("BREAKPOINT 4", "ON CREATE DE DATABASE");
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        onCreate(db);
-    }
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {}
 
     private HashMap<Object, Contacto> contacto = new HashMap<>();
 
     public List<Contacto> getContactos() {
-        Log.d("BREAKPOINT 2", "GET CONTACTOS DE LA DATABASE");
         return new ArrayList<>(contacto.values());
     }
 

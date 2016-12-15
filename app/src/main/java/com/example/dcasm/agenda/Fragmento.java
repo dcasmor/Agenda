@@ -41,7 +41,8 @@ public class Fragmento extends Fragment {
 
         // /Inicializar el adaptador con la fuente de datos.
         //Log.d("DATABASE", "BREAKPOINT");
-        Database db = Database.newInstance(getContext());
+        Database db = new Database(getActivity());
+        db.getReadableDatabase();
         adaptador = new Adaptador(getActivity(), db.getContactos());
 
         //Relacionar la lista con el adaptador.
