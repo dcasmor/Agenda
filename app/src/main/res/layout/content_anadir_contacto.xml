@@ -141,6 +141,17 @@
                     android:layout_marginTop="5dp"
                     tools:ignore="LabelFor" />
 
+                <Button
+                    android:text="Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:id="@+id/bAddButton"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/etAddWeb"
+                    android:layout_marginTop="10dp" />
+
             </RelativeLayout>
 
         </ScrollView>

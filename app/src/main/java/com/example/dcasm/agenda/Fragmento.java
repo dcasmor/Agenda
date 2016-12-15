@@ -1,5 +1,6 @@
 package com.example.dcasm.agenda;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -71,9 +72,10 @@ public class Fragmento extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
         if (id == R.id.action_settings) {
-            adaptador.clear();
-            return true;
+            Intent i = new Intent(getContext(), AnadirContacto.class);
+            startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }

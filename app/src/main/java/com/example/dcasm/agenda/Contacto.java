@@ -12,13 +12,19 @@ public class Contacto {
 
     long idContacto;
     String nombre;
-    String telefono, direccion, webBlog;
+    String telefono;
+    String direccion;
+    String webBlog;
+    String email;
+    String foto;
 
-    public Contacto(long id, String nom, String tel, String dir, String web) {
+    public Contacto(long id, String nom, String tel, String dir, String ema, String web) {
         idContacto = id;
         nombre = nom;
         direccion = dir;
+        email = ema;
         webBlog = web;
+
         telefono = tel;
     }
 
@@ -42,6 +48,10 @@ public class Contacto {
         this.direccion = direccion;
     }
 
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
+
     public String getWebBlog() {
         return webBlog;
     }
@@ -61,11 +71,12 @@ public class Contacto {
     @Override
     public String toString() {
         return "Contacto{" +
-                "idContacto=" + idContacto +
+                "direccion='" + direccion + '\'' +
+                ", idContacto=" + idContacto +
                 ", nombre='" + nombre + '\'' +
-                ", direccion='" + direccion + '\'' +
+                ", telefono='" + telefono + '\'' +
                 ", webBlog='" + webBlog + '\'' +
-                ", telefono=" + telefono +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

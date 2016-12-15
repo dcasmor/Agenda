@@ -1,5 +1,6 @@
 package com.example.dcasm.agenda;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -22,11 +23,14 @@ public class Database extends SQLiteOpenHelper {
     private static final String TABLA_FOTOS = "fotos";
 
     private static final String sql1 = "\nPRAGMA FOREIGN_KEYS = ON;";
+
     private static final String sql2 = "\nCREATE TABLE CONTACTOS(" +
             "\nIDCONTACTO INTEGER PRIMARY KEY NOT NULL," +
             "\nNOMBRE VARCHAR(50) NOT NULL," +
             "\nDIRECCION VARCHAR(50) NOT NULL," +
-            "\nWEBBLOG VARCHAR(100));";
+            "\nWEBBLOG VARCHAR(100)," +
+            "\nEMAIL VARCHAR(100));";
+
     private static final String sql3 = "\nCREATE TABLE TELEFONOS(" +
             "\nIDTELEFONOS INTEGER PRIMARY KEY NOT NULL," +
             "\nTELEFONO VARCHAR(45) NOT NULL," +
@@ -59,6 +63,20 @@ public class Database extends SQLiteOpenHelper {
 
     public List<Contacto> getContactos() {
         return new ArrayList<>(contacto.values());
+    }
+
+    public long altaContacto(Contacto c) {
+        long nreg_afectados = -1;
+        SQLiteDatabase db = getWritableDatabase();
+        if (db != null) {
+            ContentValues valores = new ContentValues();
+            valores.put("nombre", c.getNombre());
+            valores.put("telefono", c.getTelefono());
+            valores.put("direccion", c.getDireccion());
+            valores.put("email", c.getEmail());
+        }
+        db.close();
+        return nreg_afectados;
     }
 
     //Métodos de la clase
