@@ -6,7 +6,11 @@
     <string name="hello_blank_fragment"></string>
     <string name="imagen">Imagen del contacto</string>
     <string name="navigation_drawer_close"></string>
-    <string name="nombreContacto">Nombre</string>
+    <string name="contactName">Nombre</string>
     <string name="telefono">Teléfono del contacto</string>
     <string name="title_activity_anadir_contacto">AñadirContacto</string>
+    <string name="contactPhone">Teléfono</string>
+    <string name="contactAddress">Dirección</string>
+    <string name="contactEmail">Correo electrónico</string>
+    <string name="contactWeb">Sitio web</string>
 </resources>

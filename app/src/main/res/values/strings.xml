@@ -14,5 +14,9 @@
     <string name="title_activity_anadir_contacto">AddContact</string>
 
     <string name="vacio" translatable="false"> </string>
-    <string name="nombreContacto">Name</string>
+    <string name="contactName">Name</string>
+    <string name="contactPhone">Phone</string>
+    <string name="contactAddress">Address</string>
+    <string name="contactEmail">Email</string>
+    <string name="contactWeb">Website</string>
 </resources>
