@@ -1,9 +1,8 @@
-/*package com.example.dcasm.agenda;
+package com.example.dcasm.agenda;
 
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,17 +13,17 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class AgendaFragment extends Fragment {
+public class Fragmento extends Fragment {
 
     private ListView listaAgenda;
-    private AgendaAdapter agendaAdapter;
+    private Adaptador adaptador;
 
-    public AgendaFragment() {
+    public Fragmento() {
         // Required empty public constructor
     }
 
-    public static AgendaFragment newInstance() {
-        AgendaFragment fragment = new AgendaFragment();
+    public static Fragmento newInstance() {
+        Fragmento fragment = new Fragmento();
         return fragment;
     }
 
@@ -38,17 +37,21 @@ public class AgendaFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_agenda, container, false);
+
         //Instancia del ListView.
         listaAgenda = (ListView) root.findViewById(R.id.agenda_list);
-        //Inicializar el adaptador con la fuente de datos.
-        agendaAdapter = new AgendaAdapter(getActivity(), Database.getInstance().getContactos());
+
+        // /Inicializar el adaptador con la fuente de datos.
+        adaptador = new Adaptador(getActivity(), Database.getInstance().getContactos());
+
         //Relacionar la lista con el adaptador.
-        listaAgenda.setAdapter(agendaAdapter);
+        listaAgenda.setAdapter(adaptador);
+
         //Gestión eventos.
         listaAgenda.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Contacto contacto = agendaAdapter.getItem(i);
+                Contacto contacto = adaptador.getItem(i);
                 Toast.makeText(getActivity(), "Abrir detalle del contacto", Toast.LENGTH_SHORT).show();
             }
         });
@@ -67,7 +70,7 @@ public class AgendaFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            agendaAdapter.clear();
+            adaptador.clear();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -83,8 +86,8 @@ public class AgendaFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    //public interface OnFragmentInteractionListener {
+    public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-      //  void onFragmentInteraction(Uri uri);
-    //}
-//}
+        void onFragmentInteraction(Uri uri);
+    }
+}
