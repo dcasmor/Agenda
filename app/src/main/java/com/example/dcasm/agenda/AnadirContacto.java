@@ -35,9 +35,22 @@ public class AnadirContacto extends AppCompatActivity {
                 dialog.setContentView(R.layout.dialog_phone);
                 dialog.setTitle("Introduce el teléfono");
                 EditText et = (EditText) dialog.findViewById(R.id.etPhoneAdd);
+                Button bAceptar = (Button) dialog.findViewById(R.id.bAddPhoneAceptar);
+                bAceptar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //Guardar telefono en base de datos
+                    }
+                });
+
+                Button bCancelar = (Button) dialog.findViewById(R.id.bAddPhoneCancelar);
+                bCancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.cancel();
+                    }
+                });
                 dialog.show();
-                //Database db = new Database();
-                //db.addTelefono();
             }
         });
 
