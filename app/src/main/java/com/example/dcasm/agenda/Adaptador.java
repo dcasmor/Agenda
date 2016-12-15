@@ -55,4 +55,6 @@ public class Adaptador extends ArrayAdapter<Contacto> {
         TextView nom;
         TextView tel;
     }
+
+
 }
