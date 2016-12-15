@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Created by dcasm on 15/12/2016.
  */
 
-public class Fragmento extends ListActivity {
+public class Lista extends ListActivity {
     static AgendaAdapter a;
     static ArrayList<Contacto> arrayList = new ArrayList<>();
 
