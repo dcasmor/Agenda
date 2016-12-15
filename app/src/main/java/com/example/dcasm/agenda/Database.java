@@ -37,7 +37,7 @@ public class Database {
             "FOREIGN KEY(CONTACTO) REFERENCES CONTACTOS(IDCONTACTO));";
 
     private static Database database = new Database();
-    private HashMap<String, Contacto> contacto = new HashMap<>();
+    private HashMap<Object, Contacto> contacto = new HashMap<>();
 
     /*public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

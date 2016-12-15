@@ -35,11 +35,11 @@ public class AgendaAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         LayoutInflater li = actividad.getLayoutInflater();
-        View view1 = li.inflate(R.layout.objetoLista, null, true);
+        View view1 = li.inflate(R.layout.objeto_lista, null, true);
         ViewHolder holder;
 
         if (null == view1) {
-            view1 = li.inflate(R.layout.objetoLista, null, false);
+            view1 = li.inflate(R.layout.objeto_lista, null, false);
 
             holder = new ViewHolder();
             holder.img = (ImageView) view.findViewById(R.id.ivContacto);
@@ -79,6 +79,7 @@ public class AgendaAdapter extends BaseAdapter {
     public long getItemId(int i) {
         return contactos.get(i).getIdContacto();
     }
+
 /*public AgendaAdapter (Context context, List<Contacto> objects) {
         super(context, 0, objects);
     }
