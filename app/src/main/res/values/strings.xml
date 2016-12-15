@@ -7,4 +7,8 @@
     <string name="imagen">Imagen del contacto</string>
     <string name="contacto">Nombre del contacto</string>
     <string name="telefono">Teléfono del contacto</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

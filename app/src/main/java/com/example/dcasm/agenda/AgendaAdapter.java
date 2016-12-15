@@ -1,11 +1,9 @@
 package com.example.dcasm.agenda;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,9 +11,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static java.security.AccessController.getContext;
 
 /**
  * Created by dcasm on 12/12/2016.
@@ -55,6 +50,7 @@ public class AgendaAdapter extends BaseAdapter {
         holder.nom.setText(contacto.getNombre());
         holder.tel.setText(contacto.getTelefono());
         //Glide.with(getContext()).load(R.drawable.image_contact_default).into(holder.img);
+        Glide.with(actividad).load(R.drawable.image_contact_default).into(holder.img);
 
         return view1;
     }
