@@ -50,9 +50,10 @@ public class Fragmento extends Fragment {
         //Gestión eventos.
         listaAgenda.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Contacto contacto = adaptador.getItem(i);
-                Toast.makeText(getActivity(), "Abrir detalle del contacto", Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Contacto contacto = adaptador.getItem(position);
+                Toast.makeText(getActivity(), "Abrir detalle del contacto" + contacto.getNombre(),
+                        Toast.LENGTH_SHORT).show();
             }
         });
 

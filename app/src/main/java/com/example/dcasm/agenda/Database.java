@@ -62,6 +62,16 @@ public class Database {
         saveContacto(new Contacto(3, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
         saveContacto(new Contacto(4, "Orejones", "121212121", "Marasena", "dumbo.com"));
         saveContacto(new Contacto(5, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
+        saveContacto(new Contacto(6, "Danilo", "633014522", "Tartesicos", "pornhub.com"));
+        saveContacto(new Contacto(7, "Steve", "666666666", "Montaña", "mi.com"));
+        saveContacto(new Contacto(8, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
+        saveContacto(new Contacto(9, "Orejones", "121212121", "Marasena", "dumbo.com"));
+        saveContacto(new Contacto(10, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
+        saveContacto(new Contacto(11, "Danilo", "633014522", "Tartesicos", "pornhub.com"));
+        saveContacto(new Contacto(12, "Steve", "666666666", "Montaña", "mi.com"));
+        saveContacto(new Contacto(13, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
+        saveContacto(new Contacto(14, "Orejones", "121212121", "Marasena", "dumbo.com"));
+        saveContacto(new Contacto(15, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
     }
 
     private void saveContacto(Contacto cont) { contacto.put(cont.getIdContacto(), cont); }
