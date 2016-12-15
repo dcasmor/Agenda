@@ -21,35 +21,39 @@ public class Database extends SQLiteOpenHelper{
     private static final String TABLA_CONTACTOS = "contactos";
     private static final String TABLA_TELEFONOS = "telefonos";
     private static final String TABLA_FOTOS = "fotos";
-    private static final String ins = "PRAGMA foreign_keys = ON;" +
-            "\ncreate table [contactos] (" +
-            "\n[idcontacto] integer not null primary key autoincrement," +
-            "\n[nombre] varchar(50) null," +
-            "\n[direccion] varchar(50) null," +
-            "\n[webblog] varchar(100) null);" +
-            "\ncreate table [telefonos] (" +
-            "\n[idtelefonos] integer not null primary key," +
-            "\n[telefono] varchar(45) null," +
-            "\n[idcontacto] integer null," +
-            "\nforeign_key (idcontacto) references contactos(idcontacto));" +
-            "\ncreate table [fotos] (" +
-            "\n[idfoto] integer not null primary key," +
-            "\n[nomfichero] varchar(50) null," +
-            "\n[observfoto] varchar(255) null," +
-            "\n[idcontacto] integer null," +
-            "\nforeign key (idcontacto) references contactos(idcontacto));";
+
+    private static final String PRAGMA = "PRAGMA FOREIGN_KEYS ON;";
+    private static final String SQLCONTACTOS = "CREATE TABLE CONTACTOS(" +
+            "IDCONTACTO INTEGER PRIMARY KEY NOT NULL," +
+            "NOMBRE VARCHAR(50) NOT NULL," +
+            "DIRECCION VARCHAR(50) NOT NULL," +
+            "WEBBLOG VARCHAR(100));";
+    private static final String SQLTELEFONOS = "CREATE TABLE TELEFONOS(" +
+            "IDTELEFONOS INTEGER PRIMARY KEY NOT NULL," +
+            "TELEFONO VARCHAR(45) NOT NULL," +
+            "CONTACTO INTEGER NOT NULL," +
+            "FOREIGN KEY(CONTACTO) REFERENCES CONTACTO(IDCONTACTO));";
+
+    private static final String SQLFOTOS = "CREATE TABLE FOTOS(" +
+            "IDFOTO INTEGER NOT NULL," +
+            "NOMFICHERO VARCHAR(50) NOT NULL," +
+            "OBSERVFFOTO VARCHAR(255)," +
+            "CONTACTO INTEGER NOT NULL," +
+            "FOREIGN KEY(CONTACTO) REFERENCES CONTACTOS(IDCONTACTO));";
 
     //private static Database database = new Database();
     private HashMap<String, Contacto> contacto = new HashMap<>();
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        Log.d("OYE", ins);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(ins);
+        sqLiteDatabase.execSQL(SQLCONTACTOS);
+        sqLiteDatabase.execSQL(PRAGMA);
+        sqLiteDatabase.execSQL(SQLTELEFONOS);
+        sqLiteDatabase.execSQL(SQLFOTOS);
     }
 
     @Override
