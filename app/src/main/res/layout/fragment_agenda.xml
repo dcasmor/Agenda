@@ -4,10 +4,12 @@
     android:layout_height="match_parent"
     tools:context="com.example.dcasm.agenda.Fragmento" >
 
-    <!-- TODO: Update blank fragment layout -->
     <ListView
         android:id="@+id/agenda_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:drawSelectorOnTop="true"
+        android:divider="@null"
+        tools:listitem="@layout/objeto_lista"/>
 
 </FrameLayout>

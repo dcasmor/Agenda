@@ -1,6 +1,5 @@
 package com.example.dcasm.agenda;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -35,14 +34,14 @@ public class Fragmento extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View root = inflater.inflate(R.layout.fragment_agenda, container, false);
 
         //Instancia del ListView.
         listaAgenda = (ListView) root.findViewById(R.id.agenda_list);
 
         // /Inicializar el adaptador con la fuente de datos.
-        adaptador = new Adaptador(getActivity(), Database.getInstance().getContactos());
+        adaptador = new Adaptador(getActivity(),
+                Database.getInstance().getContactos());
 
         //Relacionar la lista con el adaptador.
         listaAgenda.setAdapter(adaptador);
@@ -52,8 +51,8 @@ public class Fragmento extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Contacto contacto = adaptador.getItem(position);
-                Toast.makeText(getActivity(), "Abrir detalle del contacto" + contacto.getNombre(),
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Abrir detalle del contacto: \n" +
+                        contacto.getNombre(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -75,20 +74,5 @@ public class Fragmento extends Fragment {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
     }
 }
