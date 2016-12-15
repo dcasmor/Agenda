@@ -18,13 +18,13 @@ public class Contacto {
     String email;
     String foto;
 
-    public Contacto(long id, String nom, String tel, String dir, String ema, String web) {
+    public Contacto(long id, String nom, String tel, String dir, String ema, String web, String fot) {
         idContacto = id;
         nombre = nom;
         direccion = dir;
         email = ema;
         webBlog = web;
-
+        foto = fot;
         telefono = tel;
     }
 
@@ -67,6 +67,10 @@ public class Contacto {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    public String getFoto() { return foto; }
+
+    public void setFoto(String foto) { this.foto = foto; }
 
     @Override
     public String toString() {

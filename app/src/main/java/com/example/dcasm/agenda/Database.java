@@ -74,6 +74,7 @@ public class Database extends SQLiteOpenHelper {
             valores.put("telefono", c.getTelefono());
             valores.put("direccion", c.getDireccion());
             valores.put("email", c.getEmail());
+            valores.put("foto", c.getFoto());
         }
         db.close();
         return nreg_afectados;
