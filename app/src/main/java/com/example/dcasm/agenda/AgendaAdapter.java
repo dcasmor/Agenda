@@ -30,7 +30,7 @@ public class AgendaAdapter extends ArrayAdapter<Contacto> {
         ViewHolder holder;
 
         if (null == convertView) {
-            convertView = inflater.inflate(R.layout.list_item_agenda, parent, false);
+            convertView = inflater.inflate(R.layout.item, parent, false);
 
             holder = new ViewHolder();
             holder.img = (ImageView) convertView.findViewById(R.id.ivContacto);

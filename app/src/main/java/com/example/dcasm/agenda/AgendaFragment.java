@@ -1,4 +1,4 @@
-package com.example.dcasm.agenda;
+/*package com.example.dcasm.agenda;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -83,8 +83,8 @@ public class AgendaFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    //public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-}
+      //  void onFragmentInteraction(Uri uri);
+    //}
+//}
