@@ -1,10 +1,5 @@
 package com.example.dcasm.agenda;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +8,7 @@ import java.util.List;
  * Created by dcasm on 13/12/2016.
  */
 
-public class Database extends SQLiteOpenHelper{
+public class Database {
 
     private static Contacto cont;
     private static final int DATABASE_VERSION = 1;
@@ -41,14 +36,14 @@ public class Database extends SQLiteOpenHelper{
             "CONTACTO INTEGER NOT NULL," +
             "FOREIGN KEY(CONTACTO) REFERENCES CONTACTOS(IDCONTACTO));";
 
-    //private static Database database = new Database();
+    private static Database database = new Database();
     private HashMap<String, Contacto> contacto = new HashMap<>();
 
-    public Database(Context context) {
+    /*public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(SQLCONTACTOS);
         sqLiteDatabase.execSQL(PRAGMA);
@@ -58,17 +53,17 @@ public class Database extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-    }
+    }*/
 
-    /**public static Database getInstance() { return database; }
+    public static Database getInstance() { return database; }
 
     private Database() {
-        saveContacto(new Contacto("Danilo", "633014522", "Tartesicos", "pornhub.com"));
-        saveContacto(new Contacto("Steve", "666666666", "Montaña", "mi.com"));
-        saveContacto(new Contacto("Tolete", "999999999", "Pedro Antonio", "toyota.com"));
-        saveContacto(new Contacto("Orejones", "121212121", "Marasena", "dumbo.com"));
-        saveContacto(new Contacto("Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
-    }*/
+        saveContacto(new Contacto("1", "Danilo", "633014522", "Tartesicos", "pornhub.com"));
+        saveContacto(new Contacto("2", "Steve", "666666666", "Montaña", "mi.com"));
+        saveContacto(new Contacto("3", "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
+        saveContacto(new Contacto("4", "Orejones", "121212121", "Marasena", "dumbo.com"));
+        saveContacto(new Contacto("5", "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
+    }
 
     private void saveContacto(Contacto cont) { contacto.put(cont.getIdContacto(), cont); }
 

@@ -1,17 +1,12 @@
 package com.example.dcasm.agenda;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -42,10 +37,7 @@ public class AgendaFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_agenda, container, false);
         listaAgenda = (ListView) root.findViewById(R.id.agenda_list);
 
-
-        Database database = new Database(getActivity());
-
-        agendaAdapter = new AgendaAdapter(getActivity(), database.getContactos());
+        agendaAdapter = new AgendaAdapter(getActivity(), Database.getInstance().getContactos());
 
         listaAgenda.setAdapter(agendaAdapter);
 
