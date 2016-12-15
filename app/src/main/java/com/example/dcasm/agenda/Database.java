@@ -1,5 +1,10 @@
 package com.example.dcasm.agenda;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -7,9 +12,8 @@ import java.util.HashMap;
  * Created by dcasm on 13/12/2016.
  */
 
-public class Database {
+public class Database extends SQLiteOpenHelper {
 
-    private static Contacto cont;
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "contactos.s3db";
     private static final String TABLA_CONTACTOS = "contactos";
@@ -35,46 +39,58 @@ public class Database {
             "CONTACTO INTEGER NOT NULL," +
             "FOREIGN KEY(CONTACTO) REFERENCES CONTACTOS(IDCONTACTO));";
 
-    private static Database database = new Database();
-    private HashMap<Object, Contacto> contacto = new HashMap<>();
 
-    /*public Database(Context context) {
+    public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-    }*/
-
-    /*@Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(SQLCONTACTOS);
-        sqLiteDatabase.execSQL(PRAGMA);
-        sqLiteDatabase.execSQL(SQLTELEFONOS);
-        sqLiteDatabase.execSQL(SQLFOTOS);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-    }*/
+    public void onCreate(SQLiteDatabase db) {
+        Log.d("BREAKPOINT 3", "ON CREATE DE DATABASE");
+        db.execSQL(SQLCONTACTOS);
+        db.execSQL(PRAGMA);
+        db.execSQL(SQLTELEFONOS);
+        db.execSQL(SQLFOTOS);
+        Log.d("BREAKPOINT 4", "ON CREATE DE DATABASE");
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        onCreate(db);
+    }
+
+    private HashMap<Object, Contacto> contacto = new HashMap<>();
+
+    public ArrayList<Contacto> getContactos() {
+        Log.d("BREAKPOINT 2", "GET CONTACTOS DE LA DATABASE");
+        return new ArrayList<>(contacto.values());
+    }
+
+    //Métodos de la clase
+    /*private static Database database = new Database();
+    private HashMap<Object, Contacto> contacto = new HashMap<>();
 
     public static Database getInstance() { return database; }
 
     private Database() {
-        saveContacto(new Contacto(1, "Danilo", "633014522", "Tartesicos", "pornhub.com"));
-        saveContacto(new Contacto(2, "Steve", "666666666", "Montaña", "mi.com"));
-        saveContacto(new Contacto(3, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
-        saveContacto(new Contacto(4, "Orejones", "121212121", "Marasena", "dumbo.com"));
-        saveContacto(new Contacto(5, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
-        saveContacto(new Contacto(6, "Danilo", "633014522", "Tartesicos", "pornhub.com"));
-        saveContacto(new Contacto(7, "Steve", "666666666", "Montaña", "mi.com"));
-        saveContacto(new Contacto(8, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
-        saveContacto(new Contacto(9, "Orejones", "121212121", "Marasena", "dumbo.com"));
-        saveContacto(new Contacto(10, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
-        saveContacto(new Contacto(11, "Danilo", "633014522", "Tartesicos", "pornhub.com"));
-        saveContacto(new Contacto(12, "Steve", "666666666", "Montaña", "mi.com"));
-        saveContacto(new Contacto(13, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
-        saveContacto(new Contacto(14, "Orejones", "121212121", "Marasena", "dumbo.com"));
-        saveContacto(new Contacto(15, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
+        altaContacto(new Contacto(1, "Danilo", "633014522", "Tartesicos", "pornhub.com"));
+        altaContacto(new Contacto(2, "Steve", "666666666", "Montaña", "mi.com"));
+        altaContacto(new Contacto(3, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
+        altaContacto(new Contacto(4, "Orejones", "121212121", "Marasena", "dumbo.com"));
+        altaContacto(new Contacto(5, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
+        altaContacto(new Contacto(6, "Danilo", "633014522", "Tartesicos", "pornhub.com"));
+        altaContacto(new Contacto(7, "Steve", "666666666", "Montaña", "mi.com"));
+        altaContacto(new Contacto(8, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
+        altaContacto(new Contacto(9, "Orejones", "121212121", "Marasena", "dumbo.com"));
+        altaContacto(new Contacto(10, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
+        altaContacto(new Contacto(11, "Danilo", "633014522", "Tartesicos", "pornhub.com"));
+        altaContacto(new Contacto(12, "Steve", "666666666", "Montaña", "mi.com"));
+        altaContacto(new Contacto(13, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
+        altaContacto(new Contacto(14, "Orejones", "121212121", "Marasena", "dumbo.com"));
+        altaContacto(new Contacto(15, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
     }
 
-    private void saveContacto(Contacto cont) { contacto.put(cont.getIdContacto(), cont); }
+    private void altaContacto(Contacto cont) { contacto.put(cont.getIdContacto(), cont); }
 
-    public ArrayList<Contacto> getContactos() { return new ArrayList<>(contacto.values()); }
+    public ArrayList<Contacto> getContactos() { return new ArrayList<>(contacto.values()); }*/
 }
