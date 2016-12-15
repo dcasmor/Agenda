@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,8 +17,6 @@ import java.util.List;
  */
 
 public class Adaptador extends ArrayAdapter<Contacto> {
-
-    private static ArrayList<Contacto> lista;
 
     public Adaptador(Context context, List<Contacto> objetos) {
         super(context, 0, objetos);
