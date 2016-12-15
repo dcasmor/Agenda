@@ -10,13 +10,11 @@ import java.util.UUID;
 public class Contacto implements Serializable {
     private static final long SERIALVERSIONUID = 1L;
 
-    private String idContacto;
+    private long idContacto;
     private String nombre;
-    private String telefono;
-    private String direccion;
-    private String webBlog;
+    String telefono, direccion, webBlog;
 
-    public Contacto(String id, String nom, String tel, String dir, String web) {
+    public Contacto(long id, String nom, String tel, String dir, String web) {
         idContacto = id;
         nombre = nom;
         direccion = dir;
@@ -24,9 +22,9 @@ public class Contacto implements Serializable {
         telefono = tel;
     }
 
-    public long getIdContacto() { return Long.parseLong(idContacto); }
+    public long getIdContacto() { return idContacto; }
 
-    public void setIdContacto(String idContacto) { this.idContacto = idContacto; }
+    public void setIdContacto(long idContacto) { this.idContacto = idContacto; }
 
     public String getNombre() {
         return nombre;

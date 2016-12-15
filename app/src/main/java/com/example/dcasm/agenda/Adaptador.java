@@ -8,8 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 
 /**
@@ -18,12 +16,12 @@ import java.util.ArrayList;
 
 public class Adaptador extends BaseAdapter {
 
-    private static ArrayList<Contacto> contactos;
+    private static ArrayList<Contacto> lista;
     private final Activity actividad;
 
     public Adaptador(Activity a, ArrayList<Contacto> v) {
         super();
-        this.contactos = v;
+        this.lista = v;
         this.actividad = a;
     }
 
@@ -45,12 +43,10 @@ public class Adaptador extends BaseAdapter {
             holder = (ViewHolder) view1.getTag();
         }
 
-        Contacto contacto = getItem(i);
-
-        holder.nom.setText(contacto.getNombre());
-        holder.tel.setText(contacto.getTelefono());
+        holder.nom.setText(lista.get(i).getNombre());
+        holder.tel.setText(lista.get(i).getTelefono());
         //Glide.with(getContext()).load(R.drawable.image_contact_default).into(holder.img);
-        Glide.with(actividad).load(R.drawable.image_contact_default).into(holder.img);
+        //Glide.with(actividad).load(R.drawable.image_contact_default).into(holder.img);
 
         return view1;
     }
@@ -63,17 +59,17 @@ public class Adaptador extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return contactos.size();
+        return lista.size();
     }
 
     @Override
-    public Contacto getItem(int i) {
-        return contactos.get(i);
+    public Object getItem(int i) {
+        return lista.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return contactos.get(i).getIdContacto();
+        return lista.get(i).getIdContacto();
     }
 
 /*public Adaptador (Context context, List<Contacto> objects) {

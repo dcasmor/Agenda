@@ -2,43 +2,37 @@ package com.example.dcasm.agenda;
 
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class MainActivity extends ListActivity {
+
+    static Adaptador a;
+    static ArrayList<Contacto> arrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);*/
 
-        /*AgendaFragment agendaFragment = (AgendaFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.content_main);
+        a = new Adaptador(this, arrayList);
+        a.notifyDataSetChanged();
 
-        if (agendaFragment == null) {
-            agendaFragment = AgendaFragment.newInstance();
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.content_main, agendaFragment)
-                    .commit();
-        }*/
+        setListAdapter(a);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    protected void onRestart() {
+        super.onRestart();
+        Toast.makeText(this, "Fragmento recargada", Toast.LENGTH_SHORT);
+        a = null;
+        a = new Adaptador(this, arrayList);
+        a.notifyDataSetChanged();
+        setListAdapter(a);
     }
 }

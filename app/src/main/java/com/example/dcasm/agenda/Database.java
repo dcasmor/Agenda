@@ -57,11 +57,11 @@ public class Database {
     public static Database getInstance() { return database; }
 
     private Database() {
-        saveContacto(new Contacto("1", "Danilo", "633014522", "Tartesicos", "pornhub.com"));
-        saveContacto(new Contacto("2", "Steve", "666666666", "Montaña", "mi.com"));
-        saveContacto(new Contacto("3", "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
-        saveContacto(new Contacto("4", "Orejones", "121212121", "Marasena", "dumbo.com"));
-        saveContacto(new Contacto("5", "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
+        saveContacto(new Contacto(1, "Danilo", "633014522", "Tartesicos", "pornhub.com"));
+        saveContacto(new Contacto(2, "Steve", "666666666", "Montaña", "mi.com"));
+        saveContacto(new Contacto(3, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
+        saveContacto(new Contacto(4, "Orejones", "121212121", "Marasena", "dumbo.com"));
+        saveContacto(new Contacto(5, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
     }
 
     private void saveContacto(Contacto cont) { contacto.put(cont.getIdContacto(), cont); }
