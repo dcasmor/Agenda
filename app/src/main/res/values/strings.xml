@@ -20,4 +20,6 @@
     <string name="contactEmail">Email</string>
     <string name="contactWeb">Website</string>
     <string name="contactPhoto">Photo</string>
+    <string name="aceptar">OK</string>
+    <string name="cancelar">Cancel</string>
 </resources>

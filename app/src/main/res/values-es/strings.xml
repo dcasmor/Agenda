@@ -14,4 +14,6 @@
     <string name="contactEmail">Correo electrónico</string>
     <string name="contactWeb">Sitio web</string>
     <string name="contactPhoto">Foto</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
 </resources>

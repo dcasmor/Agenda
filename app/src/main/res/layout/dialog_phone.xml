@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:layout_width="300dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:ems="10"
+            android:id="@+id/etPhoneAdd"
+            android:layout_alignParentEnd="true"
+            tools:ignore="LabelFor"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp" />
+
+        <Button
+            android:text="@string/cancelar"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/bAddPhoneCancelar"
+            android:layout_below="@id/etPhoneAdd"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:text="@string/aceptar"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/bAddPhoneAceptar"
+            android:layout_alignBaseline="@+id/bAddPhoneCancelar"
+            android:layout_alignBottom="@+id/bAddPhoneCancelar"
+            android:layout_toEndOf="@+id/bAddPhoneCancelar" />
+    </RelativeLayout>
+
+</LinearLayout>
