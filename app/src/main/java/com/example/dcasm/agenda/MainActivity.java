@@ -6,6 +6,8 @@ import android.support.v7.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
+    Database db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,5 +22,7 @@ public class MainActivity extends AppCompatActivity {
             fragmento = Fragmento.newInstance();
             getSupportFragmentManager().beginTransaction().add(R.id.content_main, fragmento).commit();
         }
+        Basedatos db = new Basedatos(this);
+        //db = new Database(this);
     }
 }

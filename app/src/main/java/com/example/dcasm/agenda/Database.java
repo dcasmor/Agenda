@@ -7,6 +7,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by dcasm on 13/12/2016.
@@ -15,24 +16,24 @@ import java.util.HashMap;
 public class Database extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "contactos.s3db";
+    private static final String DATABASE_NAME = "BD_Contactos.db";
     private static final String TABLA_CONTACTOS = "contactos";
     private static final String TABLA_TELEFONOS = "telefonos";
     private static final String TABLA_FOTOS = "fotos";
 
-    private static final String PRAGMA = "PRAGMA FOREIGN_KEYS ON;";
-    private static final String SQLCONTACTOS = "CREATE TABLE CONTACTOS(" +
+    private static final String sql1 = "PRAGMA FOREIGN_KEYS ON;";
+    private static final String sql2 = "CREATE TABLE CONTACTOS(" +
             "IDCONTACTO INTEGER PRIMARY KEY NOT NULL," +
             "NOMBRE VARCHAR(50) NOT NULL," +
             "DIRECCION VARCHAR(50) NOT NULL," +
             "WEBBLOG VARCHAR(100));";
-    private static final String SQLTELEFONOS = "CREATE TABLE TELEFONOS(" +
+    private static final String sql3 = "CREATE TABLE TELEFONOS(" +
             "IDTELEFONOS INTEGER PRIMARY KEY NOT NULL," +
             "TELEFONO VARCHAR(45) NOT NULL," +
             "CONTACTO INTEGER NOT NULL," +
             "FOREIGN KEY(CONTACTO) REFERENCES CONTACTO(IDCONTACTO));";
 
-    private static final String SQLFOTOS = "CREATE TABLE FOTOS(" +
+    private static final String sql4 = "CREATE TABLE FOTOS(" +
             "IDFOTO INTEGER NOT NULL," +
             "NOMFICHERO VARCHAR(50) NOT NULL," +
             "OBSERVFFOTO VARCHAR(255)," +
@@ -47,10 +48,10 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d("BREAKPOINT 3", "ON CREATE DE DATABASE");
-        db.execSQL(SQLCONTACTOS);
-        db.execSQL(PRAGMA);
-        db.execSQL(SQLTELEFONOS);
-        db.execSQL(SQLFOTOS);
+        db.execSQL(sql2);
+        db.execSQL(sql1);
+        db.execSQL(sql3);
+        db.execSQL(sql4);
         Log.d("BREAKPOINT 4", "ON CREATE DE DATABASE");
     }
 
@@ -61,7 +62,7 @@ public class Database extends SQLiteOpenHelper {
 
     private HashMap<Object, Contacto> contacto = new HashMap<>();
 
-    public ArrayList<Contacto> getContactos() {
+    public List<Contacto> getContactos() {
         Log.d("BREAKPOINT 2", "GET CONTACTOS DE LA DATABASE");
         return new ArrayList<>(contacto.values());
     }

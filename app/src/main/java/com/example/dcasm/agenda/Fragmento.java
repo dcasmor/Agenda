@@ -43,9 +43,9 @@ public class Fragmento extends Fragment {
         listaAgenda = (ListView) root.findViewById(R.id.agenda_list);
 
         // /Inicializar el adaptador con la fuente de datos.
-        Database db = new Database(getContext());
-        Log.d("DATABASE", "BREAKPOINT");
-        adaptador = new Adaptador(getActivity(), db.getContactos());
+        //Log.d("DATABASE", "BREAKPOINT");
+        //Basedatos db = new Basedatos(getContext());
+        //adaptador = new Adaptador(getActivity(), db.getContactos());
 
         //Relacionar la lista con el adaptador.
         listaAgenda.setAdapter(adaptador);

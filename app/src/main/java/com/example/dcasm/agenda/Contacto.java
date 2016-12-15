@@ -7,7 +7,7 @@ import java.util.UUID;
  * Created by dcasm on 12/12/2016.
  */
 
-public class Contacto implements Serializable {
+public class Contacto {
     private static final long SERIALVERSIONUID = 1L;
 
     long idContacto;
