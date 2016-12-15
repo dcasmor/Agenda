@@ -1,12 +1,15 @@
 package com.example.dcasm.agenda;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
  * Created by dcasm on 12/12/2016.
  */
 
-public class Contacto {
+public class Contacto implements Serializable {
+    private static final long SERIALVERSIONUID = 1L;
+
     private String idContacto;
     private String nombre;
     private String telefono;
