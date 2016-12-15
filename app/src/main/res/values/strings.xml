@@ -19,4 +19,5 @@
     <string name="contactAddress">Address</string>
     <string name="contactEmail">Email</string>
     <string name="contactWeb">Website</string>
+    <string name="contactPhoto">Photo</string>
 </resources>
