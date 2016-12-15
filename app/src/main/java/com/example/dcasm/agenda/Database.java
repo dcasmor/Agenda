@@ -2,7 +2,6 @@ package com.example.dcasm.agenda;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by dcasm on 13/12/2016.
@@ -67,5 +66,5 @@ public class Database {
 
     private void saveContacto(Contacto cont) { contacto.put(cont.getIdContacto(), cont); }
 
-    public List<Contacto> getContactos() { return new ArrayList<>(contacto.values()); }
+    public ArrayList<Contacto> getContactos() { return new ArrayList<>(contacto.values()); }
 }

@@ -24,9 +24,7 @@ public class Contacto implements Serializable {
         telefono = tel;
     }
 
-    public long getIdContacto() {
-        return Long.parseLong(idContacto);
-    }
+    public long getIdContacto() { return Long.parseLong(idContacto); }
 
     public void setIdContacto(String idContacto) { this.idContacto = idContacto; }
 

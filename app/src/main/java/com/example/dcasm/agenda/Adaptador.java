@@ -16,12 +16,12 @@ import java.util.ArrayList;
  * Created by dcasm on 12/12/2016.
  */
 
-public class AgendaAdapter extends BaseAdapter {
+public class Adaptador extends BaseAdapter {
 
-    private ArrayList<Contacto> contactos;
+    private static ArrayList<Contacto> contactos;
     private final Activity actividad;
 
-    public AgendaAdapter(Activity a, ArrayList<Contacto> v) {
+    public Adaptador(Activity a, ArrayList<Contacto> v) {
         super();
         this.contactos = v;
         this.actividad = a;
@@ -76,7 +76,7 @@ public class AgendaAdapter extends BaseAdapter {
         return contactos.get(i).getIdContacto();
     }
 
-/*public AgendaAdapter (Context context, List<Contacto> objects) {
+/*public Adaptador (Context context, List<Contacto> objects) {
         super(context, 0, objects);
     }
 
