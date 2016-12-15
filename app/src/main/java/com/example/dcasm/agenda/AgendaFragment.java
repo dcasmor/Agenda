@@ -3,7 +3,11 @@ package com.example.dcasm.agenda;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -27,20 +31,20 @@ public class AgendaFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View root = inflater.inflate(R.layout.fragment_agenda, container, false);
+        //Instancia del ListView.
         listaAgenda = (ListView) root.findViewById(R.id.agenda_list);
-
+        //Inicializar el adaptador con la fuente de datos.
         agendaAdapter = new AgendaAdapter(getActivity(), Database.getInstance().getContactos());
-
+        //Relacionar la lista con el adaptador.
         listaAgenda.setAdapter(agendaAdapter);
-
+        //Gestión eventos.
         listaAgenda.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -50,12 +54,10 @@ public class AgendaFragment extends Fragment {
         });
 
         setHasOptionsMenu(true);
-
-        // Inflate the layout for this fragment
         return root;
     }
 
-    /*@Override
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_main, menu);
@@ -69,7 +71,7 @@ public class AgendaFragment extends Fragment {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }*/
+    }
 
     /**
      * This interface must be implemented by activities that contain this
