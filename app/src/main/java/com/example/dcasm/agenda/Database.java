@@ -55,6 +55,7 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL(sql2);
         db.execSQL(sql3);
         db.execSQL(sql4);
+        Log.d("BREAKPOINT", "CREACION DATABASE");
     }
 
     @Override
@@ -91,7 +92,7 @@ public class Database extends SQLiteOpenHelper {
 
             ContentValues valoresF = new ContentValues();
             valoresF.put("NOMFICHERO", f.getNomFichero());
-            valoresF.put("OBSERVFOTO", f.getObserv());
+            //valoresF.put("OBSERVFOTO", f.getObserv());
             valoresF.put("CONTACTO", id);
             rF = db.insert("FOTOS", null, valoresF);
 

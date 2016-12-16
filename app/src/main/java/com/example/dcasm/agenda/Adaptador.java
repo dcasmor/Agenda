@@ -44,7 +44,7 @@ public class Adaptador extends ArrayAdapter<Contactos> {
         Contactos contacto = getItem(position);
 
         holder.nom.setText(contacto.getNombre());
-        holder.tel.setText(contacto.getTelefono());
+        //holder.tel.setText(contacto.getTelefono());
         Glide.with(getContext()).load(R.drawable.image_contact_default).into(holder.img);
 
         return convertView;
