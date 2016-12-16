@@ -34,7 +34,7 @@
                     android:layout_marginTop="10dp" />
 
                 <TextView
-                    android:text="@string/contactName"
+                    android:text="@string/contact_name"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:layout_below="@+id/ivAddPhoto"
@@ -45,7 +45,7 @@
                     android:textColor="@android:color/black" />
 
                 <TextView
-                    android:text="@string/contactPhone"
+                    android:text="@string/contact_phone"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:layout_below="@+id/etAddName"
@@ -79,7 +79,7 @@
                     android:layout_toStartOf="@+id/bAddPhone" />
 
                 <TextView
-                    android:text="@string/contactAddress"
+                    android:text="@string/contact_address"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:layout_below="@+id/etAddPhone"
@@ -101,7 +101,7 @@
                     tools:ignore="LabelFor" />
 
                 <TextView
-                    android:text="@string/contactEmail"
+                    android:text="@string/contact_email"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:layout_below="@+id/etAddAddress"
@@ -123,7 +123,7 @@
                     tools:ignore="LabelFor" />
 
                 <TextView
-                    android:text="@string/contactWeb"
+                    android:text="@string/contact_web"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/etAddEmail"
@@ -145,7 +145,7 @@
                     tools:ignore="LabelFor" />
 
                 <TextView
-                    android:text="@string/contactPhoto"
+                    android:text="@string/contact_photo"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:id="@+id/textView8"

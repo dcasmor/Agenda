@@ -82,7 +82,7 @@ public class Database extends SQLiteOpenHelper {
 
             rC = db.insert("CONTACTOS", null, valoresC);
             String[] col = {"IDCONTACTO"};
-            Cursor cId = db.query("CONTACTOS", col, null, null, null, null, "DESC");
+            /*Cursor cId = db.query("CONTACTOS", col, null, null, null, null, null);
             int id = cId.getInt(0);
 
             ContentValues valoresT = new ContentValues();
@@ -97,7 +97,7 @@ public class Database extends SQLiteOpenHelper {
             rF = db.insert("FOTOS", null, valoresF);
 
             if (rC == -1 || rT == -1 || rF == -1)
-                return -1L;
+                return -1L;*/
         }
         db.close();
         return rC;

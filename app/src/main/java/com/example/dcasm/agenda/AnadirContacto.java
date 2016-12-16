@@ -36,7 +36,7 @@ public class AnadirContacto extends AppCompatActivity {
             public void onClick(View view) {
                 final Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.dialog_phone);
-                dialog.setTitle("Introduce el teléfono");
+                dialog.setTitle(R.string.phone_input);
                 final EditText et = (EditText) dialog.findViewById(R.id.etPhoneAdd);
                 et.setText(etTel.getText());
                 Button bAceptar = (Button) dialog.findViewById(R.id.bAddPhoneAceptar);
