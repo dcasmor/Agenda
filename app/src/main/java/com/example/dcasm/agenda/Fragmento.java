@@ -52,8 +52,7 @@ public class Fragmento extends Fragment {
     }
 
     private void cargaContactos() {
-        //new Carga().execute();
-        db.getContactos();
+        new Carga().execute();
         }
 
     private void modificaContacto(String id) {

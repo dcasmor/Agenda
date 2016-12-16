@@ -54,8 +54,7 @@ public class Database extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {}
 
     public Cursor getContactos() {
-        return getReadableDatabase().query("CONTACTOS",
-                null, null, null, null, null, null);
+        return getReadableDatabase().rawQuery("SELECT * FROM CONTACTOS", null);
     }
 
     public long altaContacto(SQLiteDatabase db, Contactos contacto) {
