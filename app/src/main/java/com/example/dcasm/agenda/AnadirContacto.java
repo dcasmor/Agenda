@@ -75,6 +75,8 @@ public class AnadirContacto extends AppCompatActivity {
                         etEmail.getText().toString(), etWeb.getText().toString());
                 Telefonos t = new Telefonos(etTel.getText().toString());
                 Fotos f = new Fotos(etFoto.getText().toString());
+                Database db = new Database(context);
+                db.alta(c, t, f);
             }
         });
     }
