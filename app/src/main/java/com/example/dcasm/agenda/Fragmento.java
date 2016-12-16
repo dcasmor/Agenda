@@ -36,24 +36,22 @@ public class Fragmento extends Fragment {
         lista = (ListView) root.findViewById(R.id.agenda_list);
         adaptador = new Adaptador(getActivity(), null);
         lista.setAdapter(adaptador);
+
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Cursor currentItem = (Cursor) adaptador.getItem(position);
-                String item = currentItem.getString(currentItem.getColumnIndex("IDCONTACTO"));
-                modificaContacto(item);
+                //Cursor currentItem = (Cursor) adaptador.getItem(position);
+                //String item = currentItem.getString(currentItem.getColumnIndex("IDCONTACTO"));
+                //modificaContacto(item);
             }
         });
 
-        getActivity().deleteDatabase(Database.DATABASE_NAME);
-        cargaContactos();
+        db = new Database(getActivity());
+
+        lista();
         setHasOptionsMenu(true);
         return root;
     }
-
-    private void cargaContactos() {
-        new Carga().execute();
-        }
 
     private void modificaContacto(String id) {
         Intent i = new Intent(getActivity(), null);
@@ -61,16 +59,21 @@ public class Fragmento extends Fragment {
         startActivityForResult(i, MODIFICAR);
     }
 
-    private class Carga extends AsyncTask<Void, Void, Cursor> {
+    private void lista() { new CargaContactos().execute(); }
+
+    private class CargaContactos extends AsyncTask<Void, Void, Cursor> {
 
         @Override
-        protected Cursor doInBackground(Void... voids) { return db.getContactos(); }
+        protected Cursor doInBackground(Void... voids) {
+            return db.getContactos();
+        }
 
         @Override
         protected void onPostExecute(Cursor cursor) {
             if (cursor != null && cursor.getCount() > 0) {
                 adaptador.swapCursor(cursor);
             } else {
+                // Mostrar empty state
             }
         }
     }

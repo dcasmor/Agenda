@@ -43,8 +43,8 @@ public class Adaptador extends CursorAdapter {
 
         String nombre = cursor.getString(cursor.getColumnIndex("NOMBRE"));
         String telefono = cursor.getString(cursor.getColumnIndex("TELEFONO"));
-        String imagenRuta = cursor.getString(cursor.getColumnIndex("OBSERVFOTO"));
-        String imagenArchivo = cursor.getString(cursor.getColumnIndex("NOMFICHERO"));
+        //String imagenRuta = cursor.getString(cursor.getColumnIndex("OBSERVFOTO"));
+        //String imagenArchivo = cursor.getString(cursor.getColumnIndex("NOMFICHERO"));
 
         tvNombre.setText(nombre);
         tvTelefono.setText(telefono);

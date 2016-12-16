@@ -47,14 +47,20 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL(sql2);
         db.execSQL(sql3);
         db.execSQL(sql4);
-        mockData(db);
+        //mockData(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {}
 
     public Cursor getContactos() {
-        return getReadableDatabase().rawQuery("SELECT * FROM CONTACTOS", null);
+        SQLiteDatabase db = getReadableDatabase();
+        if (db != null);
+        Cursor c = db.rawQuery("SELECT CONTACTOS.NOMBRE AS NOMBRE, TELEFONOS.TELEFONO AS TELEFONO FROM " +
+                "CONTACTOS, TELEFONOS WHERE CONTACTOS.IDCONTACTO = TELEFONOS.CONTACTO ORDER BY " +
+                "NOMBRE ASC;",
+                null);
+        return c;
     }
 
     public long altaContacto(SQLiteDatabase db, Contactos contacto) {
