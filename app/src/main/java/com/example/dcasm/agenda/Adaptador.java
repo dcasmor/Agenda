@@ -49,7 +49,7 @@ public class Adaptador extends CursorAdapter {
         tvNombre.setText(nombre);
         tvTelefono.setText(telefono);
 
-        Glide
+        /*Glide
                 .with(context)
                 .load(Uri.parse(imagenRuta + imagenArchivo))
                 .asBitmap()
@@ -63,7 +63,7 @@ public class Adaptador extends CursorAdapter {
                         drawable.setCircular(true);
                         iv.setImageDrawable(drawable);
                     }
-                });
+                });*/
     }
 
     /*

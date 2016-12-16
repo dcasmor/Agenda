@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class Fragmento extends Fragment {
 
@@ -52,7 +51,10 @@ public class Fragmento extends Fragment {
         return root;
     }
 
-    private void cargaContactos() { new Carga().execute(); }
+    private void cargaContactos() {
+        //new Carga().execute();
+        db.getContactos();
+        }
 
     private void modificaContacto(String id) {
         Intent i = new Intent(getActivity(), null);

@@ -47,6 +47,7 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL(sql2);
         db.execSQL(sql3);
         db.execSQL(sql4);
+        mockData(db);
     }
 
     @Override
@@ -55,6 +56,29 @@ public class Database extends SQLiteOpenHelper {
     public Cursor getContactos() {
         return getReadableDatabase().query("CONTACTOS",
                 null, null, null, null, null, null);
+    }
+
+    public long altaContacto(SQLiteDatabase db, Contactos contacto) {
+        return db.insert("CONTACTOS", null, contacto.toContactosContentValues());
+    }
+
+    private void mockData(SQLiteDatabase sqLiteDatabase) {
+        altaContacto(sqLiteDatabase, new Contactos("Carlos Perez", "Abogado penalista",
+                "300 200 1111", "carlos_perez.jpg"));
+        altaContacto(sqLiteDatabase, new Contactos("Daniel Samper", "Abogado accidentes de tráfico",
+                "300 200 2222", "daniel_samper.jpg"));
+        altaContacto(sqLiteDatabase, new Contactos("Lucia Aristizabal", "Abogado de derechos laborales",
+                "300 200 3333", "lucia_aristizabal.jpg"));
+        altaContacto(sqLiteDatabase, new Contactos("Marina Acosta", "Abogado de familia",
+                "300 200 4444", "marina_acosta.jpg"));
+        altaContacto(sqLiteDatabase, new Contactos("Olga Ortiz", "Abogado de administración pública",
+                "300 200 5555", "olga_ortiz.jpg"));
+        altaContacto(sqLiteDatabase, new Contactos("Pamela Briger", "Abogado fiscalista",
+                "300 200 6666", "pamela_briger.jpg"));
+        altaContacto(sqLiteDatabase, new Contactos("Rodrigo Benavidez", "Abogado Mercantilista",
+                "300 200 1111", "rodrigo_benavidez.jpg"));
+        altaContacto(sqLiteDatabase, new Contactos("Tom Bonz", "Abogado penalista",
+                "300 200 1111", "tom_bonz.jpg"));
     }
 
     public long altaContacto(Contactos c, Telefonos t, Fotos f) {
@@ -68,7 +92,7 @@ public class Database extends SQLiteOpenHelper {
             valoresC.put("NOMBRE", c.getNombre());
             valoresC.put("DIRECCION", c.getDireccion());
             valoresC.put("EMAIL", c.getEmail());
-            valoresC.put("WEBBLOG", c.getWebBlog());
+            //valoresC.put("WEBBLOG", c.getWebBlog());
 
             rC = db.insert("CONTACTOS", null, valoresC);
             String[] col = {"IDCONTACTO"};
