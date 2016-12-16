@@ -15,7 +15,6 @@ public class AnadirContacto extends AppCompatActivity {
     final Context context = this;
     private Button bAnadir, bTelefono, bFoto;
     private EditText etNom, etDir, etEmail, etWeb, etFoto, etTel;
-    Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +77,8 @@ public class AnadirContacto extends AppCompatActivity {
                 Fotos f = new Fotos(etFoto.getText().toString());
                 Database db = new Database(context);
                 db.alta(c, t, f);
-                Toast.makeText(this, R.string.contact_added, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.contact_added, Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }
