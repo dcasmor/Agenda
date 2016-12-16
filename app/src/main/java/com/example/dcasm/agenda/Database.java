@@ -5,11 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by dcasm on 13/12/2016.
@@ -18,10 +13,7 @@ import java.util.List;
 public class Database extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "contactos.sdb";
-    private static final String TABLA_CONTACTOS = "contactos";
-    private static final String TABLA_TELEFONOS = "telefonos";
-    private static final String TABLA_FOTOS = "fotos";
+    public static final String DATABASE_NAME = "contactos.sdb";
 
     private static final String sql1 = "\nPRAGMA FOREIGN_KEYS = ON;";
 
@@ -60,29 +52,12 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {}
 
-    private HashMap<Object, Contactos> contacto = new HashMap<>();
-
-    public List<Contactos> getContactos() {
-        return new ArrayList<>(contacto.values());
+    public Cursor getContactos() {
+        return getReadableDatabase().query("CONTACTOS",
+                null, null, null, null, null, null);
     }
 
-
-    public List<String> consulta() {
-        ArrayList<String> al = new ArrayList<String>();
-        String query = "SELECT CONTACTOS.NOMBRE, TELEFONOS.TELEFONO FROM CONTACTOS, TELEFONOS WHERE " +
-                "CONTACTOS.IDCONTACTO = TELEFONOS.CONTACTO ORDER BY NOMBRE ASC;";
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor c = db.rawQuery(query, null);
-        c.moveToFirst();
-        while (!c.isAfterLast()) {
-            al.add(c.getString(c.getColumnIndex("NOMBRE")));
-            c.moveToNext();
-        }
-        return al;
-
-    }
-
-    public long alta(Contactos c, Telefonos t, Fotos f) {
+    public long altaContacto(Contactos c, Telefonos t, Fotos f) {
         long rC = -1;
         long rT = rC;
         long rF = rT;
@@ -118,32 +93,4 @@ public class Database extends SQLiteOpenHelper {
         db.close();
         return rC;
     }
-
-    //Métodos de la clase
-    /*private static Database database = new Database();
-    private HashMap<Object, Contacto> contacto = new HashMap<>();
-
-    public static Database getInstance() { return database; }
-
-    private Database() {
-        alta(new Contacto(1, "Danilo", "633014522", "Tartesicos", "pornhub.com"));
-        alta(new Contacto(2, "Steve", "666666666", "Montaña", "mi.com"));
-        alta(new Contacto(3, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
-        alta(new Contacto(4, "Orejones", "121212121", "Marasena", "dumbo.com"));
-        alta(new Contacto(5, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
-        alta(new Contacto(6, "Danilo", "633014522", "Tartesicos", "pornhub.com"));
-        alta(new Contacto(7, "Steve", "666666666", "Montaña", "mi.com"));
-        alta(new Contacto(8, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
-        alta(new Contacto(9, "Orejones", "121212121", "Marasena", "dumbo.com"));
-        alta(new Contacto(10, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
-        alta(new Contacto(11, "Danilo", "633014522", "Tartesicos", "pornhub.com"));
-        alta(new Contacto(12, "Steve", "666666666", "Montaña", "mi.com"));
-        alta(new Contacto(13, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
-        alta(new Contacto(14, "Orejones", "121212121", "Marasena", "dumbo.com"));
-        alta(new Contacto(15, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
-    }
-
-    private void alta(Contacto cont) { contacto.put(cont.getIdContacto(), cont); }
-
-    public ArrayList<Contacto> getContactos() { return new ArrayList<>(contacto.values()); }*/
 }

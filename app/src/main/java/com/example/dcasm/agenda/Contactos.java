@@ -1,72 +1,61 @@
 package com.example.dcasm.agenda;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+
 /**
  * Created by dcasm on 12/12/2016.
  */
 
 public class Contactos {
 
-    long idContacto = -1;
-    String nombre;
-    String direccion;
-    String webBlog;
-    String email;
+    private int id;
+    private String nombre;
+    private String direccion;
+    private String email;
+    private String sitioWeb;
 
-    public Contactos(long id, String nom, String dir, String ema, String web) {
-        idContacto = id;
-        nombre = nom;
-        direccion = dir;
-        email = ema;
-        webBlog = web;
-    }
-
-    public Contactos(String nom, String dir, String ema, String web) {
-        nombre = nom;
-        direccion = dir;
-        email = ema;
-        webBlog = web;
-    }
-
-    public long getIdContacto() { return idContacto; }
-
-    public void setIdContacto(long idContacto) { this.idContacto = idContacto; }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
+    public Contactos(String nombre, String direccion, String email, String sitioWeb,) {
         this.nombre = nombre;
+        this.direccion = direccion;
+        this.email = email;
+        this.sitioWeb = sitioWeb;
+    }
+
+    public Contactos(Cursor cursor) {
+        id = cursor.getInt(cursor.getColumnIndex("IDCONTACTO"));
+        nombre = cursor.getString(cursor.getColumnIndex("NOMBRE"));
+        direccion = cursor.getString(cursor.getColumnIndex("DIRECCION"));
+        email = cursor.getString(cursor.getColumnIndex("EMAIL"));
+        sitioWeb = cursor.getString(cursor.getColumnIndex("WEBBLOG"));
+    }
+
+    public ContentValues toContactosContentValues() {
+        ContentValues values = new ContentValues();
+        values.put("NOMBRE", nombre);
+        values.put("DIRECCION", direccion);
+        values.put("EMAIL", email);
+        values.put("WEBBLOG", sitioWeb);
+        return values;
     }
 
     public String getDireccion() {
         return direccion;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public String getEmail() {
+        return email;
     }
 
-    public String getEmail() { return email; }
-
-    public void setEmail(String email) { this.email = email; }
-
-    public String getWebBlog() {
-        return webBlog;
+    public int getId() {
+        return id;
     }
 
-    public void setWebBlog(String webBlog) {
-        this.webBlog = webBlog;
+    public String getNombre() {
+        return nombre;
     }
 
-    @Override
-    public String toString() {
-        return "Contactos{" +
-                "direccion='" + direccion + '\'' +
-                ", idContacto=" + idContacto +
-                ", nombre='" + nombre + '\'' +
-                ", webBlog='" + webBlog + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+    public String getSitioWeb() {
+        return sitioWeb;
     }
 }

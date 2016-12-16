@@ -76,7 +76,7 @@ public class AnadirContacto extends AppCompatActivity {
                 Telefonos t = new Telefonos(etTel.getText().toString());
                 Fotos f = new Fotos(etFoto.getText().toString());
                 Database db = new Database(context);
-                long aux = db.alta(c, t, f);
+                long aux = db.altaContacto(c, t, f);
                 if (aux != -1) {
                     Toast.makeText(context, R.string.contact_added, Toast.LENGTH_SHORT).show();
                     finish();

@@ -1,7 +1,8 @@
 package com.example.dcasm.agenda;
 
-import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,51 +17,61 @@ import android.widget.Toast;
 
 public class Fragmento extends Fragment {
 
-    private ListView listaAgenda;
+    private static final int MODIFICAR = 1;
+
+    private ListView lista;
     private Adaptador adaptador;
+    private Database db;
 
     public Fragmento() {
         // Required empty public constructor
     }
 
-    public static Fragmento newInstance() {
-        Fragmento fragment = new Fragmento();
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    public static Fragmento newInstance() { return new Fragmento(); }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_agenda, container, false);
 
-        //Instancia del ListView.
-        listaAgenda = (ListView) root.findViewById(R.id.agenda_list);
-
-        // /Inicializar el adaptador con la fuente de datos.
-        Database db = new Database(getActivity());
-        db.consulta();
-        adaptador = new Adaptador(getActivity(), db.getContactos());
-
-        //Relacionar la lista con el adaptador.
-        listaAgenda.setAdapter(adaptador);
-
-        //Gestión eventos.
-        listaAgenda.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lista = (ListView) root.findViewById(R.id.agenda_list);
+        adaptador = new Adaptador(getActivity(), null);
+        lista.setAdapter(adaptador);
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Contactos contacto = adaptador.getItem(position);
-                Toast.makeText(getActivity(), "Abrir detalle del contacto: \n" +
-                        contacto.getNombre(), Toast.LENGTH_SHORT).show();
+                Cursor currentItem = (Cursor) adaptador.getItem(position);
+                String item = currentItem.getString(currentItem.getColumnIndex("IDCONTACTO"));
+                modificaContacto(item);
             }
         });
 
+        getActivity().deleteDatabase(Database.DATABASE_NAME);
+        cargaContactos();
         setHasOptionsMenu(true);
         return root;
+    }
+
+    private void cargaContactos() { new Carga().execute(); }
+
+    private void modificaContacto(String id) {
+        Intent i = new Intent(getActivity(), null);
+        i.putExtra(null, id);
+        startActivityForResult(i, MODIFICAR);
+    }
+
+    private class Carga extends AsyncTask<Void, Void, Cursor> {
+
+        @Override
+        protected Cursor doInBackground(Void... voids) { return db.getContactos(); }
+
+        @Override
+        protected void onPostExecute(Cursor cursor) {
+            if (cursor != null && cursor.getCount() > 0) {
+                adaptador.swapCursor(cursor);
+            } else {
+            }
+        }
     }
 
     @Override
