@@ -16,6 +16,10 @@ public class Telefonos {
         contacto = cont;
     }
 
+    public Telefonos(String tel) {
+        telefono = tel;
+    }
+
     public long getContacto() {
         return contacto;
     }

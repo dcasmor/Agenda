@@ -12,8 +12,15 @@ public class Contactos {
     String webBlog;
     String email;
 
-    public Contactos(long id, String nom, String tel, String dir, String ema, String web) {
+    public Contactos(long id, String nom, String dir, String ema, String web) {
         idContacto = id;
+        nombre = nom;
+        direccion = dir;
+        email = ema;
+        webBlog = web;
+    }
+
+    public Contactos(String nom, String dir, String ema, String web) {
         nombre = nom;
         direccion = dir;
         email = ema;

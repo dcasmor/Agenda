@@ -18,6 +18,10 @@ public class Fotos {
         contacto = con;
     }
 
+    public Fotos(String nom) {
+        nomFichero = nom;
+    }
+
     public long getContacto() {
         return contacto;
     }

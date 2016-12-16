@@ -28,6 +28,7 @@ public class AnadirContacto extends AppCompatActivity {
         etTel = (EditText) findViewById(R.id.etAddPhone);
         etEmail = (EditText) findViewById(R.id.etAddEmail);
         etFoto = (EditText) findViewById(R.id.etAddPhoto);
+        etWeb = (EditText) findViewById(R.id.etAddWeb);
 
         bTelefono = (Button) findViewById(R.id.bAddPhone);
         bTelefono.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +71,10 @@ public class AnadirContacto extends AppCompatActivity {
         bAnadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Contactos c = new Contactos(etNom.getText().toString(), etDir.getText().toString(),
+                        etEmail.getText().toString(), etWeb.getText().toString());
+                Telefonos t = new Telefonos(etTel.getText().toString());
+                Fotos f = new Fotos(etFoto.getText().toString());
             }
         });
     }
