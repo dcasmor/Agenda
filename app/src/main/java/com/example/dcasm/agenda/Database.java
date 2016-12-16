@@ -68,8 +68,8 @@ public class Database extends SQLiteOpenHelper {
 
     public long alta(Contactos c, Telefonos t, Fotos f) {
         long rC = -1;
-        long rT = -1;
-        long rF = -1;
+        long rT = rC;
+        long rF = rT;
 
         SQLiteDatabase db = getWritableDatabase();
         if (db != null) {
