@@ -17,6 +17,8 @@ public class Contract {
         public static final String NOMBRE = "nombre";
         public static final String DIRECCION = "direccion";
         public static final String TELEFONO = "telefono";
+        public static final String ID_TELEFONO = "idtelefono";
+        public static final String ID_FOTO = "idfoto";
         public static final String CORREO = "email";
         public static final String WEBBLOG = "webblog";
         public static final String CLAVE = "contacto";

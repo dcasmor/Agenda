@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import static com.example.dcasm.agenda.Contract.Contacto;
+
 /**
  * Created by dcasm on 13/12/2016.
  */
@@ -15,27 +17,27 @@ public class Database extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "contactos.sdb";
 
-    private static final String sql1 = "\nPRAGMA FOREIGN_KEYS = ON;";
-
-    private static final String sql2 = "\nCREATE TABLE CONTACTOS(" +
-            "\n_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "\nNOMBRE VARCHAR(50) NOT NULL," +
-            "\nDIRECCION VARCHAR(50) NOT NULL," +
-            "\nWEBBLOG VARCHAR(100)," +
-            "\nEMAIL VARCHAR(100));";
-
-    private static final String sql3 = "\nCREATE TABLE TELEFONOS(" +
-            "\nIDTELEFONOS INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "\nTELEFONO VARCHAR(45) NOT NULL," +
-            "\nCONTACTO INTEGER," +
-            "\nFOREIGN KEY(CONTACTO) REFERENCES CONTACTOS(_ID));";
-
-    private static final String sql4 = "\nCREATE TABLE FOTOS(" +
-            "\nIDFOTO INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "\nNOMFICHERO VARCHAR(50) NOT NULL," +
-            "\nOBSERVFOTO VARCHAR(255)," +
-            "\nCONTACTO INTEGER," +
-            "\nFOREIGN KEY(CONTACTO) REFERENCES CONTACTOS(_ID));";
+    private static final String sql = "PRAGMA FOREIGN_KEYS = ON; " +
+            "CREATE TABLE " + Contacto.TABLE_NAME_C + " (" +
+            Contacto._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            Contacto.ID + "TEXT NOT NULL," +
+            Contacto.NOMBRE + " VARCHAR(50) NOT NULL," +
+            Contacto.DIRECCION + " VARCHAR(50) NOT NULL," +
+            Contacto.CORREO + " VARCHAR(50)," +
+            Contacto.WEBBLOG + " VARCHAR(100)); " +
+            "CREATE TABLE " + Contacto.TABLE_NAME_T + " (" +
+            Contacto.ID_TELEFONO + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            Contacto.TELEFONO + " VARCHAR(45) NOT NULL," +
+            Contacto.CLAVE + " INTEGER," +
+            "FOREIGN KEY(" + Contacto.CLAVE + ") " +
+            "REFERENCES " + Contacto.TABLE_NAME_C + "(" + Contacto._ID + ")); " +
+            "CREATE TABLE " + Contacto.TABLE_NAME_F + " (" +
+            Contacto.ID_FOTO + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            Contacto.FICHERO + " VARCHAR(50) NOT NULL, " +
+            Contacto.RUTA + " VARCHAR(255)," +
+            Contacto.CLAVE + " INTEGER," +
+            "FOREIGN KEY(" + Contacto.CLAVE + ") " +
+            "REFERENCES " + Contacto.TABLE_NAME_C + "(" + Contacto._ID + "));";
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -43,11 +45,8 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(sql1);
-        db.execSQL(sql2);
-        db.execSQL(sql3);
-        db.execSQL(sql4);
-        mockData(db);
+        db.execSQL(sql);
+        //mockData(db);
     }
 
     @Override
@@ -56,13 +55,13 @@ public class Database extends SQLiteOpenHelper {
     public Cursor getContactos() {
         SQLiteDatabase db = getReadableDatabase();
         if (db != null);
-        Cursor cursor = db.rawQuery("SELECT CONTACTOS._ID AS _ID, " +
-                "CONTACTOS.NOMBRE AS NOMBRE, " +
-                "TELEFONOS.TELEFONO AS TELEFONO " +
-                "FROM CONTACTOS, TELEFONOS " +
-                "WHERE CONTACTOS._ID = TELEFONOS.CONTACTO " +
-                "AND CONTACTOS._ID = TELEFONOS.CONTACTO " +
-                "ORDER BY CONTACTOS.NOMBRE ASC;",
+        Cursor cursor = db.rawQuery("SELECT contactos._ID AS _ID, " +
+                "contactos.nombre AS nombre, " +
+                "telefonos.telefonos AS telefono " +
+                "FROM contactos, telefonos " +
+                "WHERE contactos._ID = telefonos.contacto " +
+                "AND contactos._ID = telefonos.contacto " +
+                "ORDER BY contactos.nombre ASC;",
                 null);
         return cursor;
     }
