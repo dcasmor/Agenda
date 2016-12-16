@@ -41,7 +41,7 @@ public class Database extends SQLiteOpenHelper {
     private static final String sql4 = "\nCREATE TABLE FOTOS(" +
             "\nIDFOTO INTEGER PRIMARY KEY AUTOINCREMENT," +
             "\nNOMFICHERO VARCHAR(50) NOT NULL," +
-            "\nOBSERVFFOTO VARCHAR(255)," +
+            "\nOBSERVFOTO VARCHAR(255)," +
             "\nCONTACTO INTEGER," +
             "\nFOREIGN KEY(CONTACTO) REFERENCES CONTACTOS(IDCONTACTO));";
 
@@ -66,22 +66,40 @@ public class Database extends SQLiteOpenHelper {
         return new ArrayList<>(contacto.values());
     }
 
-    public long altaContacto(Contactos c) {
-        long nreg_afectados = -1;
+    public long alta(Contactos c, Telefonos t, Fotos f) {
+        long rC = -1;
+        long rT = -1;
+        long rF = -1;
+
         SQLiteDatabase db = getWritableDatabase();
         if (db != null) {
-            ContentValues valores = new ContentValues();
-            valores.put("nombre", c.getNombre());
-            valores.put("telefono", c.getTelefono());
-            valores.put("direccion", c.getDireccion());
-            valores.put("email", c.getEmail());
+            ContentValues valoresC = new ContentValues();
+            valoresC.put("NOMBRE", c.getNombre());
+            valoresC.put("DIRECCION", c.getDireccion());
+            valoresC.put("EMAIL", c.getEmail());
+            valoresC.put("WEBBLOG", c.getWebBlog());
 
-            nreg_afectados = db.insert("contactos", null, valores);
+            rC = db.insert("CONTACTOS", null, valoresC);
+            String[] col = {"IDCONTACTO"};
+            Cursor cId = db.query("CONTACTOS", col, null, null, null, null, "DESC");
+            int id = cId.getInt(0);
 
+            ContentValues valoresT = new ContentValues();
+            valoresT.put("TELEFONO", t.getTelefono());
+            valoresT.put("CONTACTO", id);
+            rT = db.insert("TELEFONOS", null, valoresT);
 
+            ContentValues valoresF = new ContentValues();
+            valoresF.put("NOMFICHERO", f.getNomFichero());
+            valoresF.put("OBSERVFOTO", f.getObserv());
+            valoresF.put("CONTACTO", id);
+            rF = db.insert("FOTOS", null, valoresF);
+
+            if (rC == -1 || rT == -1 || rF == -1)
+                return -1L;
         }
         db.close();
-        return nreg_afectados;
+        return rC;
     }
 
     //Métodos de la clase
@@ -91,24 +109,24 @@ public class Database extends SQLiteOpenHelper {
     public static Database getInstance() { return database; }
 
     private Database() {
-        altaContacto(new Contacto(1, "Danilo", "633014522", "Tartesicos", "pornhub.com"));
-        altaContacto(new Contacto(2, "Steve", "666666666", "Montaña", "mi.com"));
-        altaContacto(new Contacto(3, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
-        altaContacto(new Contacto(4, "Orejones", "121212121", "Marasena", "dumbo.com"));
-        altaContacto(new Contacto(5, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
-        altaContacto(new Contacto(6, "Danilo", "633014522", "Tartesicos", "pornhub.com"));
-        altaContacto(new Contacto(7, "Steve", "666666666", "Montaña", "mi.com"));
-        altaContacto(new Contacto(8, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
-        altaContacto(new Contacto(9, "Orejones", "121212121", "Marasena", "dumbo.com"));
-        altaContacto(new Contacto(10, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
-        altaContacto(new Contacto(11, "Danilo", "633014522", "Tartesicos", "pornhub.com"));
-        altaContacto(new Contacto(12, "Steve", "666666666", "Montaña", "mi.com"));
-        altaContacto(new Contacto(13, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
-        altaContacto(new Contacto(14, "Orejones", "121212121", "Marasena", "dumbo.com"));
-        altaContacto(new Contacto(15, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
+        alta(new Contacto(1, "Danilo", "633014522", "Tartesicos", "pornhub.com"));
+        alta(new Contacto(2, "Steve", "666666666", "Montaña", "mi.com"));
+        alta(new Contacto(3, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
+        alta(new Contacto(4, "Orejones", "121212121", "Marasena", "dumbo.com"));
+        alta(new Contacto(5, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
+        alta(new Contacto(6, "Danilo", "633014522", "Tartesicos", "pornhub.com"));
+        alta(new Contacto(7, "Steve", "666666666", "Montaña", "mi.com"));
+        alta(new Contacto(8, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
+        alta(new Contacto(9, "Orejones", "121212121", "Marasena", "dumbo.com"));
+        alta(new Contacto(10, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
+        alta(new Contacto(11, "Danilo", "633014522", "Tartesicos", "pornhub.com"));
+        alta(new Contacto(12, "Steve", "666666666", "Montaña", "mi.com"));
+        alta(new Contacto(13, "Tolete", "999999999", "Pedro Antonio", "toyota.com"));
+        alta(new Contacto(14, "Orejones", "121212121", "Marasena", "dumbo.com"));
+        alta(new Contacto(15, "Dios mediante", "456789123", "Francisco Ayala", "diosmediante.com"));
     }
 
-    private void altaContacto(Contacto cont) { contacto.put(cont.getIdContacto(), cont); }
+    private void alta(Contacto cont) { contacto.put(cont.getIdContacto(), cont); }
 
     public ArrayList<Contacto> getContactos() { return new ArrayList<>(contacto.values()); }*/
 }
