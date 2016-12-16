@@ -15,7 +15,7 @@ public class Contactos {
     private String email;
     private String sitioWeb;
 
-    public Contactos(String nombre, String direccion, String email, String sitioWeb,) {
+    public Contactos(String nombre, String direccion, String email, String sitioWeb) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.email = email;
