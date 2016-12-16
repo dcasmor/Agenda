@@ -16,9 +16,9 @@ import java.util.List;
  * Created by dcasm on 12/12/2016.
  */
 
-public class Adaptador extends ArrayAdapter<Contacto> {
+public class Adaptador extends ArrayAdapter<Contactos> {
 
-    public Adaptador(Context context, List<Contacto> objetos) {
+    public Adaptador(Context context, List<Contactos> objetos) {
         super(context, 0, objetos);
     }
 
@@ -41,7 +41,7 @@ public class Adaptador extends ArrayAdapter<Contacto> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Contacto contacto = getItem(position);
+        Contactos contacto = getItem(position);
 
         holder.nom.setText(contacto.getNombre());
         holder.tel.setText(contacto.getTelefono());

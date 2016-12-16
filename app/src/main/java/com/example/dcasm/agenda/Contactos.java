@@ -1,13 +1,10 @@
 package com.example.dcasm.agenda;
 
-import java.io.Serializable;
-import java.util.UUID;
-
 /**
  * Created by dcasm on 12/12/2016.
  */
 
-public class Contacto {
+public class Contactos {
     private static final long SERIALVERSIONUID = 1L;
 
     long idContacto;
@@ -18,7 +15,7 @@ public class Contacto {
     String email;
     String foto;
 
-    public Contacto(long id, String nom, String tel, String dir, String ema, String web, String fot) {
+    public Contactos(long id, String nom, String tel, String dir, String ema, String web, String fot) {
         idContacto = id;
         nombre = nom;
         direccion = dir;
@@ -74,7 +71,7 @@ public class Contacto {
 
     @Override
     public String toString() {
-        return "Contacto{" +
+        return "Contactos{" +
                 "direccion='" + direccion + '\'' +
                 ", idContacto=" + idContacto +
                 ", nombre='" + nombre + '\'' +

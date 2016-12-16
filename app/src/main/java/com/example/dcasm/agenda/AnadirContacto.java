@@ -3,11 +3,8 @@ package com.example.dcasm.agenda;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +37,7 @@ public class AnadirContacto extends AppCompatActivity {
                 dialog.setContentView(R.layout.dialog_phone);
                 dialog.setTitle("Introduce el teléfono");
                 final EditText et = (EditText) dialog.findViewById(R.id.etPhoneAdd);
+                et.setText(etTel.getText());
                 Button bAceptar = (Button) dialog.findViewById(R.id.bAddPhoneAceptar);
                 bAceptar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -72,7 +70,6 @@ public class AnadirContacto extends AppCompatActivity {
         bAnadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Contacto contacto = new Contacto();
             }
         });
     }
