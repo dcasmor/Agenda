@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import static com.example.dcasm.agenda.Contract.Contacto;
 
@@ -19,33 +20,37 @@ public class Database extends SQLiteOpenHelper {
 
     private static final String sql = "PRAGMA FOREIGN_KEYS = ON; " +
             "CREATE TABLE " + Contacto.TABLE_NAME_C + " (" +
-            Contacto._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-            Contacto.ID + "TEXT NOT NULL," +
-            Contacto.NOMBRE + " VARCHAR(50) NOT NULL," +
-            Contacto.DIRECCION + " VARCHAR(50) NOT NULL," +
-            Contacto.CORREO + " VARCHAR(50)," +
-            Contacto.WEBBLOG + " VARCHAR(100)); " +
+            Contacto._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            Contacto.ID + " VARCHAR(50) NOT NULL, " +
+            Contacto.NOMBRE + " VARCHAR(50) NOT NULL, " +
+            Contacto.DIRECCION + " VARCHAR(50) NOT NULL, " +
+            Contacto.CORREO + " VARCHAR(50), " +
+            Contacto.WEBBLOG + " VARCHAR(50)); " +
+
             "CREATE TABLE " + Contacto.TABLE_NAME_T + " (" +
-            Contacto.ID_TELEFONO + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-            Contacto.TELEFONO + " VARCHAR(45) NOT NULL," +
-            Contacto.CLAVE + " INTEGER," +
-            "FOREIGN KEY(" + Contacto.CLAVE + ") " +
+            Contacto.ID_TELEFONO + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            Contacto.TELEFONO + " VARCHAR(45) NOT NULL, " +
+            Contacto.CLAVE + " INTEGER, " +
+            "FOREIGN KEY (" + Contacto.CLAVE + ") " +
             "REFERENCES " + Contacto.TABLE_NAME_C + "(" + Contacto._ID + ")); " +
+
             "CREATE TABLE " + Contacto.TABLE_NAME_F + " (" +
-            Contacto.ID_FOTO + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            Contacto.ID_FOTO + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             Contacto.FICHERO + " VARCHAR(50) NOT NULL, " +
-            Contacto.RUTA + " VARCHAR(255)," +
-            Contacto.CLAVE + " INTEGER," +
-            "FOREIGN KEY(" + Contacto.CLAVE + ") " +
+            Contacto.RUTA + " VARCHAR(255), " +
+            Contacto.CLAVE + " INTEGER, " +
+            "FOREIGN KEY (" + Contacto.CLAVE + ") " +
             "REFERENCES " + Contacto.TABLE_NAME_C + "(" + Contacto._ID + "));";
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        Log.d("SQL", sql);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(sql);
+        Log.d("SQL", sql);
         //mockData(db);
     }
 
