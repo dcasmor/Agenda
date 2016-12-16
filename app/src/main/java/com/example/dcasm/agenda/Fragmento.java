@@ -1,5 +1,6 @@
 package com.example.dcasm.agenda;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -41,9 +42,8 @@ public class Fragmento extends Fragment {
         listaAgenda = (ListView) root.findViewById(R.id.agenda_list);
 
         // /Inicializar el adaptador con la fuente de datos.
-        //Log.d("DATABASE", "BREAKPOINT");
         Database db = new Database(getActivity());
-        db.getReadableDatabase();
+        db.consulta();
         adaptador = new Adaptador(getActivity(), db.getContactos());
 
         //Relacionar la lista con el adaptador.
@@ -73,7 +73,7 @@ public class Fragmento extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_add) {
             Intent i = new Intent(getContext(), AnadirContacto.class);
             startActivity(i);
         }

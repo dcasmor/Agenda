@@ -66,6 +66,22 @@ public class Database extends SQLiteOpenHelper {
         return new ArrayList<>(contacto.values());
     }
 
+
+    public List<String> consulta() {
+        ArrayList<String> al = new ArrayList<String>();
+        String query = "SELECT CONTACTOS.NOMBRE, TELEFONOS.TELEFONO FROM CONTACTOS, TELEFONOS WHERE " +
+                "CONTACTOS.IDCONTACTO = TELEFONOS.CONTACTO ORDER BY NOMBRE ASC;";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            al.add(c.getString(c.getColumnIndex("NOMBRE")));
+            c.moveToNext();
+        }
+        return al;
+
+    }
+
     public long alta(Contactos c, Telefonos t, Fotos f) {
         long rC = -1;
         long rT = rC;
