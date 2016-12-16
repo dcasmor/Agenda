@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AnadirContacto extends AppCompatActivity {
 
@@ -77,6 +78,7 @@ public class AnadirContacto extends AppCompatActivity {
                 Fotos f = new Fotos(etFoto.getText().toString());
                 Database db = new Database(context);
                 db.alta(c, t, f);
+                Toast.makeText(this, R.string.contact_added, Toast.LENGTH_SHORT).show();
             }
         });
     }

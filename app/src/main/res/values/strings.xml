@@ -23,4 +23,5 @@
     <string name="aceptar">OK</string>
     <string name="cancelar">Cancel</string>
     <string name="phone_input">Add a phone</string>
+    <string name="contact_added">Contact created</string>
 </resources>
