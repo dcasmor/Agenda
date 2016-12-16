@@ -55,7 +55,6 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL(sql2);
         db.execSQL(sql3);
         db.execSQL(sql4);
-        Log.d("BREAKPOINT", "CREACION DATABASE");
     }
 
     @Override
@@ -82,8 +81,9 @@ public class Database extends SQLiteOpenHelper {
 
             rC = db.insert("CONTACTOS", null, valoresC);
             String[] col = {"IDCONTACTO"};
-            /*Cursor cId = db.query("CONTACTOS", col, null, null, null, null, null);
-            int id = cId.getInt(0);
+            Cursor cId = db.rawQuery("SELECT MAX(IDCONTACTO) FROM CONTACTOS", null);
+            cId.moveToFirst();
+            int id = cId.getInt(cId.getPosition());
 
             ContentValues valoresT = new ContentValues();
             valoresT.put("TELEFONO", t.getTelefono());
@@ -92,12 +92,12 @@ public class Database extends SQLiteOpenHelper {
 
             ContentValues valoresF = new ContentValues();
             valoresF.put("NOMFICHERO", f.getNomFichero());
-            //valoresF.put("OBSERVFOTO", f.getObserv());
+            valoresF.put("OBSERVFOTO", f.getObserv());
             valoresF.put("CONTACTO", id);
             rF = db.insert("FOTOS", null, valoresF);
 
             if (rC == -1 || rT == -1 || rF == -1)
-                return -1L;*/
+                return -1L;
         }
         db.close();
         return rC;

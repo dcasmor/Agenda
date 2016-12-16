@@ -76,9 +76,13 @@ public class AnadirContacto extends AppCompatActivity {
                 Telefonos t = new Telefonos(etTel.getText().toString());
                 Fotos f = new Fotos(etFoto.getText().toString());
                 Database db = new Database(context);
-                db.alta(c, t, f);
-                Toast.makeText(context, R.string.contact_added, Toast.LENGTH_SHORT).show();
-                finish();
+                long aux = db.alta(c, t, f);
+                if (aux != -1) {
+                    Toast.makeText(context, R.string.contact_added, Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else
+                    Toast.makeText(context, "ERROR", Toast.LENGTH_LONG).show();
             }
         });
     }
