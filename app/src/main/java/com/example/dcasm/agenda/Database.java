@@ -2,6 +2,7 @@ package com.example.dcasm.agenda;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -25,23 +26,23 @@ public class Database extends SQLiteOpenHelper {
     private static final String sql1 = "\nPRAGMA FOREIGN_KEYS = ON;";
 
     private static final String sql2 = "\nCREATE TABLE CONTACTOS(" +
-            "\nIDCONTACTO INTEGER PRIMARY KEY NOT NULL," +
+            "\nIDCONTACTO INTEGER PRIMARY KEY AUTOINCREMENT," +
             "\nNOMBRE VARCHAR(50) NOT NULL," +
             "\nDIRECCION VARCHAR(50) NOT NULL," +
             "\nWEBBLOG VARCHAR(100)," +
             "\nEMAIL VARCHAR(100));";
 
     private static final String sql3 = "\nCREATE TABLE TELEFONOS(" +
-            "\nIDTELEFONOS INTEGER PRIMARY KEY NOT NULL," +
+            "\nIDTELEFONOS INTEGER PRIMARY KEY AUTOINCREMENT," +
             "\nTELEFONO VARCHAR(45) NOT NULL," +
-            "\nCONTACTO INTEGER NOT NULL," +
+            "\nCONTACTO INTEGER," +
             "\nFOREIGN KEY(CONTACTO) REFERENCES CONTACTOS(IDCONTACTO));";
 
     private static final String sql4 = "\nCREATE TABLE FOTOS(" +
-            "\nIDFOTO INTEGER NOT NULL," +
+            "\nIDFOTO INTEGER PRIMARY KEY AUTOINCREMENT," +
             "\nNOMFICHERO VARCHAR(50) NOT NULL," +
             "\nOBSERVFFOTO VARCHAR(255)," +
-            "\nCONTACTO INTEGER NOT NULL," +
+            "\nCONTACTO INTEGER," +
             "\nFOREIGN KEY(CONTACTO) REFERENCES CONTACTOS(IDCONTACTO));";
 
     public Database(Context context) {
@@ -74,7 +75,10 @@ public class Database extends SQLiteOpenHelper {
             valores.put("telefono", c.getTelefono());
             valores.put("direccion", c.getDireccion());
             valores.put("email", c.getEmail());
-            valores.put("foto", c.getFoto());
+
+            nreg_afectados = db.insert("contactos", null, valores);
+
+
         }
         db.close();
         return nreg_afectados;

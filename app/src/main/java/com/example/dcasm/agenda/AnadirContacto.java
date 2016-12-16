@@ -16,6 +16,7 @@ public class AnadirContacto extends AppCompatActivity {
 
     final Context context = this;
     private Button bAnadir, bTelefono, bFoto;
+    private EditText etNom, etDir, etEmail, etWeb, etFoto, etTel;
     Database db;
 
     @Override
@@ -25,7 +26,11 @@ public class AnadirContacto extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        db = new Database(this);
+        etNom = (EditText) findViewById(R.id.etAddName);
+        etDir = (EditText) findViewById(R.id.etAddAddress);
+        etTel = (EditText) findViewById(R.id.etAddPhone);
+        etEmail = (EditText) findViewById(R.id.etAddEmail);
+        etFoto = (EditText) findViewById(R.id.etAddPhoto);
 
         bTelefono = (Button) findViewById(R.id.bAddPhone);
         bTelefono.setOnClickListener(new View.OnClickListener() {
@@ -34,12 +39,13 @@ public class AnadirContacto extends AppCompatActivity {
                 final Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.dialog_phone);
                 dialog.setTitle("Introduce el teléfono");
-                EditText et = (EditText) dialog.findViewById(R.id.etPhoneAdd);
+                final EditText et = (EditText) dialog.findViewById(R.id.etPhoneAdd);
                 Button bAceptar = (Button) dialog.findViewById(R.id.bAddPhoneAceptar);
                 bAceptar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //Guardar telefono en base de datos
+                        etTel.setText(et.getText());
+                        dialog.cancel();
                     }
                 });
 
@@ -55,12 +61,18 @@ public class AnadirContacto extends AppCompatActivity {
         });
 
         bFoto = (Button) findViewById(R.id.bAddPhoto);
+        bFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //EVENTO DE TOMA DE FOTOGRAFIA
+            }
+        });
 
         bAnadir = (Button) findViewById(R.id.bAddButton);
         bAnadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Contacto contacto = new Contacto();
             }
         });
     }
