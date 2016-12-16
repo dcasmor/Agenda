@@ -60,13 +60,13 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {}
 
-    private HashMap<Object, Contacto> contacto = new HashMap<>();
+    private HashMap<Object, Contactos> contacto = new HashMap<>();
 
-    public List<Contacto> getContactos() {
+    public List<Contactos> getContactos() {
         return new ArrayList<>(contacto.values());
     }
 
-    public long altaContacto(Contacto c) {
+    public long altaContacto(Contactos c) {
         long nreg_afectados = -1;
         SQLiteDatabase db = getWritableDatabase();
         if (db != null) {

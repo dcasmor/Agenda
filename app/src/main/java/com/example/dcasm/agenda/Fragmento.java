@@ -53,7 +53,7 @@ public class Fragmento extends Fragment {
         listaAgenda.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Contacto contacto = adaptador.getItem(position);
+                Contactos contacto = adaptador.getItem(position);
                 Toast.makeText(getActivity(), "Abrir detalle del contacto: \n" +
                         contacto.getNombre(), Toast.LENGTH_SHORT).show();
             }
