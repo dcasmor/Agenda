@@ -18,7 +18,7 @@ public class Database extends SQLiteOpenHelper {
     private static final String sql1 = "\nPRAGMA FOREIGN_KEYS = ON;";
 
     private static final String sql2 = "\nCREATE TABLE CONTACTOS(" +
-            "\nIDCONTACTO INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "\n_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
             "\nNOMBRE VARCHAR(50) NOT NULL," +
             "\nDIRECCION VARCHAR(50) NOT NULL," +
             "\nWEBBLOG VARCHAR(100)," +
@@ -28,14 +28,14 @@ public class Database extends SQLiteOpenHelper {
             "\nIDTELEFONOS INTEGER PRIMARY KEY AUTOINCREMENT," +
             "\nTELEFONO VARCHAR(45) NOT NULL," +
             "\nCONTACTO INTEGER," +
-            "\nFOREIGN KEY(CONTACTO) REFERENCES CONTACTOS(IDCONTACTO));";
+            "\nFOREIGN KEY(CONTACTO) REFERENCES CONTACTOS(_ID));";
 
     private static final String sql4 = "\nCREATE TABLE FOTOS(" +
             "\nIDFOTO INTEGER PRIMARY KEY AUTOINCREMENT," +
             "\nNOMFICHERO VARCHAR(50) NOT NULL," +
             "\nOBSERVFOTO VARCHAR(255)," +
             "\nCONTACTO INTEGER," +
-            "\nFOREIGN KEY(CONTACTO) REFERENCES CONTACTOS(IDCONTACTO));";
+            "\nFOREIGN KEY(CONTACTO) REFERENCES CONTACTOS(_ID));";
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -47,7 +47,7 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL(sql2);
         db.execSQL(sql3);
         db.execSQL(sql4);
-        //mockData(db);
+        mockData(db);
     }
 
     @Override
@@ -56,11 +56,15 @@ public class Database extends SQLiteOpenHelper {
     public Cursor getContactos() {
         SQLiteDatabase db = getReadableDatabase();
         if (db != null);
-        Cursor c = db.rawQuery("SELECT CONTACTOS.NOMBRE AS NOMBRE, TELEFONOS.TELEFONO AS TELEFONO FROM " +
-                "CONTACTOS, TELEFONOS WHERE CONTACTOS.IDCONTACTO = TELEFONOS.CONTACTO ORDER BY " +
-                "NOMBRE ASC;",
+        Cursor cursor = db.rawQuery("SELECT CONTACTOS._ID AS _ID, " +
+                "CONTACTOS.NOMBRE AS NOMBRE, " +
+                "TELEFONOS.TELEFONO AS TELEFONO " +
+                "FROM CONTACTOS, TELEFONOS " +
+                "WHERE CONTACTOS._ID = TELEFONOS.CONTACTO " +
+                "AND CONTACTOS._ID = TELEFONOS.CONTACTO " +
+                "ORDER BY CONTACTOS.NOMBRE ASC;",
                 null);
-        return c;
+        return cursor;
     }
 
     public long altaContacto(SQLiteDatabase db, Contactos contacto) {
@@ -100,8 +104,8 @@ public class Database extends SQLiteOpenHelper {
             //valoresC.put("WEBBLOG", c.getWebBlog());
 
             rC = db.insert("CONTACTOS", null, valoresC);
-            String[] col = {"IDCONTACTO"};
-            Cursor cId = db.rawQuery("SELECT MAX(IDCONTACTO) FROM CONTACTOS", null);
+            String[] col = {"_ID"};
+            Cursor cId = db.rawQuery("SELECT MAX(_ID) FROM CONTACTOS", null);
             cId.moveToFirst();
             int id = cId.getInt(cId.getPosition());
 

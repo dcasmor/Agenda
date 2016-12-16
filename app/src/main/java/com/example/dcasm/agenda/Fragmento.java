@@ -59,7 +59,10 @@ public class Fragmento extends Fragment {
         startActivityForResult(i, MODIFICAR);
     }
 
-    private void lista() { new CargaContactos().execute(); }
+    private Cursor lista() {
+        //new CargaContactos().execute();
+        return db.getContactos();
+        }
 
     private class CargaContactos extends AsyncTask<Void, Void, Cursor> {
 

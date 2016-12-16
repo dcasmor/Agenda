@@ -41,6 +41,7 @@ public class Adaptador extends CursorAdapter {
         TextView tvNombre = (TextView) view.findViewById(R.id.tvNombre);
         TextView tvTelefono = (TextView) view.findViewById(R.id.tvTelefono);
 
+        String tamadre = cursor.getString(cursor.getColumnIndex("_ID"));
         String nombre = cursor.getString(cursor.getColumnIndex("NOMBRE"));
         String telefono = cursor.getString(cursor.getColumnIndex("TELEFONO"));
         //String imagenRuta = cursor.getString(cursor.getColumnIndex("OBSERVFOTO"));
